@@ -1,5 +1,6 @@
 # 2014_P1
 
-This repo has been created in 2014. Many of my little small scripts will be upload to this repo.
+This repo has been created in 2014. Many of my small scripts will be uploaded to this repo.
 
 - notebook data cleaner
+- Kindle note caster
