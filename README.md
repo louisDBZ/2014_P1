@@ -4,3 +4,10 @@ This repo has been created in 2014. Many of my small scripts will be uploaded to
 
 - notebook data cleaner
 - Kindle note caster
+
+#### exemple pour la config du file_mapper.json
+```json
+{
+"marketing": "Lecture/Marketing.docx",
+"sales": "Lecture/Sales.docx"
+}
