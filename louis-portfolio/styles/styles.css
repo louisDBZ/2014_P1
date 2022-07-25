@@ -45,7 +45,7 @@ section {
 
 a {
   /* le a est poour anchor, qui permet de mettre des liens URL */
-  color: red;
+  color: var(--color-secondary);
   font-family: inherit;
 }
 
@@ -88,7 +88,7 @@ a {
   color: var(--color-white);
 }
 
-/* pour gérer le CSS en haut de la page*/
+/* pour gérer le CSS du titre en haut de la page*/
 
 .main-title {
   text-align: center;
@@ -112,4 +112,38 @@ a {
   transform: translate(-50%, -50%);
   font-weight: 800;
   font-size: 6.3rem;
+}
+
+/* pour chacune des 2 sections, je veux set up les niveaux de titres 4 et 5*/
+
+.why-page {
+  padding-bottom: 3rem;
+}
+
+.list-page {
+  padding-bottom: 3rem;
+}
+
+.container {
+  display: none;
+  transform: translateY(-100%) scale(0);
+  transition: all 0.4s ease-in-out;
+  background-color: var(--color-primary);
+}
+
+
+/* cela permet de faire le transit de 0% à 100% */
+
+.active {
+  display: block;
+  animation: appear 1s ease-in-out;
+  transform: translateY(0) scaleY(1);
+}
+@keyframes appear {
+  0% {
+    transform: translateY(-100%) scaleY(0);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
 }
