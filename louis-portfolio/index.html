@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+ <!--https://www.youtube.com/watch?v=xV7S8BhIeBo&t=293s 
+* penser à inspecter la page pour voir les pb
+ -->
+
 <head>
     <!-- le head permet de setup les polices et styles -->
     <meta charset="UTF-8">
@@ -15,11 +19,13 @@
 </head>
 <body class="main-content"><!-- on met une classe ici, pas très interessant de faire cela car static-->
     <main>  
-        <section class="section sec1 section1"> <!-- mettre des sections sur le site -->
-           
-            <div>
-                <h2>My books</h2>
+        <section class="container book"> <!-- mettre des sections sur le site -->
+
+            <!-- permet de mettre en haut le titre et à noter: Reading est en background derrière -->
+            <div class="main-title">
+                <h2>Interesting <span>books</span><span class="bg-text">Reading</span></h2>
             </div>
+
             <div>
                 <div>
                     <h4>Why <span>this page?</span> </h4>
@@ -52,7 +58,6 @@
                     - Business model nouvel génération - Strategyzer <br>
                     - The Value proposition design - Strategyzer <br>
                     - the Lean Startup – Eric Ries <br>
-                    - initiation à la méthode CK<br>
                     - Hacking Growth - Brown & Ellis<br>
                     - la fabrique de l'innovation - Gilles Garel & Elmar Mock<br>
                     - Introduction à la conception innovante - Presse des Mines<br>
@@ -143,7 +148,9 @@
 
             </section>
                    
-            <section class="section sec2 section2"></section>
+            <section class="container home">
+                Home
+            </section>
     
 
     </main>
@@ -157,7 +164,7 @@
         </div>
     </div>
 
-    <script></script>
+ <script src="app.js"></script>
 
 </body>
 </html>
