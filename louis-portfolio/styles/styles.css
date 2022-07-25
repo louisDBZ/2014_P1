@@ -7,6 +7,7 @@
   list-style: none;
 }
 
+/* root permet de mettre des variables dedans, ici on met des couleurs, on les réutilise ensuite comme background-color par ex*/
 :root {
   --color-primary: #191d2b;
   --color-secondary: #27AE60;
@@ -23,6 +24,8 @@
   --box-shadow-1: 0 3px 15px rgba(0,0,0,.3);
 }
 
+
+/*  section qui peret de set up l'aspect de tout en général */
 body {
   background-color: var(--color-primary);
   font-family: "Poppins", sans-serif;
@@ -30,3 +33,13 @@ body {
   color: var(--color-white);
   transition: all 0.4s ease-in-out;
 }
+
+section {
+  min-height: 100vh;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 3rem 18rem;
+}
+
