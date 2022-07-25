@@ -43,3 +43,8 @@ section {
   padding: 3rem 18rem;
 }
 
+a {
+  /* le a est poour anchor, qui permet de mettre des liens URL */
+  color: red;
+  font-family: inherit;
+}
