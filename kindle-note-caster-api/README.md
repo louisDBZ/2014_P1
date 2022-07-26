@@ -11,7 +11,10 @@ config 2:28:00
 - aller sur pgadmin, entrer 
 
 https://www.postgresql.org/ftp/pgadmin/pgadmin4/v6.11/windows/
+
 https://www.pgadmin.org/download/pgadmin-4-windows/
+
+https://www.enterprisedb.com/postgresql-tutorial-resources-training?uuid=db55e32d-e9f0-4d7c-9aef-b17d01210704&campaignId=7012J000001NhszQAC
 
 ### documentations:
 https://www.pgadmin.org/docs/pgadmin4/6.7/connect_to_server.html
