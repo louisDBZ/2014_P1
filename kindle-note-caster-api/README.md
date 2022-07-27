@@ -8,13 +8,15 @@ config 2:28:00
 
 - télécharger postgre et pgadmin GUI
 
-- aller sur pgadmin, entrer 
+- aller sur pgadmin, entrer le mdp master et le mot de passe du user 'postgre'
 
 https://www.postgresql.org/ftp/pgadmin/pgadmin4/v6.11/windows/
 https://www.pgadmin.org/download/pgadmin-4-windows/
 
 ### documentations:
 https://www.pgadmin.org/docs/pgadmin4/6.7/connect_to_server.html
+
+problème: ne comprend pas pourquoi cela marche: après ré-installation et attente, soudainement ça a marché. 
 
 # API 
 
