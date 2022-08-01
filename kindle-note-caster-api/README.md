@@ -69,6 +69,20 @@ post excel file, manage exception
 get statistcs de l'api
 auth et user
 
+# gestion de l'auth avec jwt/ Oauth2
+
+`pip install python-jose[cryptography]`
+
+commande pour générer arbitrairement la clé de l'algorithme, à mettre dans le .env:
+
+`openssl rand -hex 32`
+
+https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
+
+pour décoder les jwt:
+
+https://jwt.io/
+
 # errors:
 
 Error loading ASGI app. Could not import module "main".  => aller dans le dossier kindle
