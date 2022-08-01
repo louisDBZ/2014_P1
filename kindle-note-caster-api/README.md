@@ -33,7 +33,16 @@ pour créer le fichier gérant les variables d'environments:
 
 (à la place de les ajouter une à une dans le gestionnaire de variables )
 
-
+```
+DATABASE_HOSTNAME=
+DATABASE_PORT=
+DATABASE_PASSWORD=
+DATABASE_NAME=
+DATABASE_USERNAME=
+SECRET_KEY=
+ALGORITHM=
+ACCESS_TOKEN_EXPIRE_MINUTES=
+```
 
 # le driver pour la bdd psycopg2
 
