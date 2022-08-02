@@ -23,7 +23,7 @@ problème: ne comprend pas pourquoi cela marche: après ré-installation et atte
 
 pour mettre les codes de la db ( meme si écrit en clair dans mon code)
 
-`py -3 -m venv venv`
+`py -3 -m venv venv`  le second venv est le nom que l'on a donné à l'environment
 
 edit configurations> Use specified interpreter
 
@@ -47,6 +47,14 @@ ACCESS_TOKEN_EXPIRE_MINUTES=
 # le driver pour la bdd psycopg2
 
 https://www.psycopg.org/docs/usage.html#passing-parameters-to-sql-queries
+
+# l'ORM ( Ogject relational Mapper): sqlachelmy
+
+`pip install sqlalchemy`
+
+# pydantic
+
+`pip install pydantic[dotenv]`
 
 # API 
 
