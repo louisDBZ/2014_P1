@@ -56,9 +56,15 @@ https://www.psycopg.org/docs/usage.html#passing-parameters-to-sql-queries
 
 `pip install pydantic[dotenv]`
 
+`pip install pydantic[email]`
+
 # API 
 
-pour le lancer: télecharger uvicorn
+ télecharger uvicorn
+
+`pip install uvicorn`
+
+https://fastapi.tiangolo.com/deployment/manually/
 
 lancer la commande depuis le dossier kindle-...
 
@@ -95,4 +101,16 @@ https://jwt.io/
 
 Error loading ASGI app. Could not import module "main".  => aller dans le dossier kindle
 
+# passlib
 
+`pip install passlib`
+
+# ?
+
+`pip install python-multipart`
+
+# TO DO:
+
+- remettre de l'ordre dans mes terminaux, ou les imports se font
+
+-remettre de l'ordre dans mes imports

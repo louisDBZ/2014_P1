@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+# a noter: il faudra faire une focntion pour la gestion de l'id
 
 router = APIRouter(
     prefix="/posts",
