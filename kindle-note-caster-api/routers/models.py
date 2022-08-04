@@ -12,15 +12,24 @@ from .database import Base
 
 # dans la bbd postgre, la string est un 'character varying'
 # ------------------------timestamp ---- 'timestamp with time zone'
-# -------------------------tserver_default=text('now()') ---- now()
+# -------------------------server_default=text('now()') ---- now()
+
 
 # clic droit et 'Query Tool'> et lancer 'select * from users'
 #nullable=False la valeur ne peut pas etre nulle
 
+
+
+from .database import mydefault_post,mydefault_user
+
+
+
+
+
 class Post(Base):
     # table post document , title of the kindle document, created at, user
     __tablename__ = "posts"
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, nullable=False,default=mydefault_post)
     title = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
@@ -33,7 +42,7 @@ class Post(Base):
 class User(Base):
     # table users , column id, email, password, created_at
     __tablename__ = "users"
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, nullable=False,default=mydefault_user)
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True),

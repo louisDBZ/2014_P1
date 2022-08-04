@@ -21,7 +21,6 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     user.password = hashed_password
 
     new_user = models.User(**user.dict())
-    new_user.id=12# a corriger
 
     db.add(new_user)
     # pour que les changements ai bel et bien lieu: besoin de commit et de refresh ( sinon fait à la main)
