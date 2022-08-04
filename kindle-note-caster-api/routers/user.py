@@ -1,6 +1,5 @@
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
-#from ..
 from .models import  User,Column
 from . import models, schemas, utils
 from .database import get_db
@@ -15,15 +14,18 @@ router = APIRouter(
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.UserOut)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
-
-
+    # pydantic est capable de savoir si l'email créé est un vrai ou non
     # hash the password - user.password
+
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
 
     new_user = models.User(**user.dict())
+    new_user.id=12# a corriger
+
     db.add(new_user)
-    db.commit()  # pour que les changements ai bel et bien lieu: besoinde commit et de refresh ( sinon fait à la main)
+    # pour que les changements ai bel et bien lieu: besoin de commit et de refresh ( sinon fait à la main)
+    db.commit()
     db.refresh(new_user)
 
     return new_user

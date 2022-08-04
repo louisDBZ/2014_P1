@@ -15,7 +15,7 @@ from .database import Base
 # -------------------------tserver_default=text('now()') ---- now()
 
 # clic droit et 'Query Tool'> et lancer 'select * from users'
-
+#nullable=False la valeur ne peut pas etre nulle
 
 class Post(Base):
     # table post document , title of the kindle document, created at, user
