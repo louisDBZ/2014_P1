@@ -9,6 +9,8 @@ from .config import settings
 # a retravailler car quand je fais un pip freeze selon que dans venv ou pas, je n'ai pas le meme résultat.
 # je crois que n'utilise pas les installations de venv
 
+'''utiliser le token: pas besoin de se reconnecter et ensuite mettre sur postman dans autorization>type: bearer token '''
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
 # SECRET_KEY

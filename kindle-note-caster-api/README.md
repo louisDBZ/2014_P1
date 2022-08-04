@@ -111,11 +111,17 @@ Error loading ASGI app. Could not import module "main".  => aller dans le dossie
 
 # TO DO:
 
--tester les authn video: 6.00.00
 
 - remettre de l'ordre dans mes terminaux, ou les imports se font
 
--remettre de l'ordre dans mes imports, et lire:
+-remettre de l'ordre dans mes imports entre les dossiers, et lire:
 
 https://iq-inc.com/importerror-attempted-relative-import/
 
+- faire les posts et mettre en place le traitement des 2 requetes (les faire asynchrones)
+
+- visualiser la documentation
+
+- déploiement et tests
+
+- terminer la relecture de mes notes
