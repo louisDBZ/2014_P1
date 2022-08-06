@@ -109,6 +109,10 @@ Error loading ASGI app. Could not import module "main".  => aller dans le dossie
 
 `pip install python-multipart`
 
+`pip install python-docx`
+
+`pip install pandas`
+
 # documentation
 
 disponible à l'adresse: http://127.0.0.1:8000/docs
@@ -125,10 +129,11 @@ https://iq-inc.com/importerror-attempted-relative-import/
 
 - faire les posts et mettre en place le traitement des 2 requetes (les faire asynchrones)
 
-- visualiser la documentation
-
 - déploiement et tests
 
 - terminer la relecture de mes notes
 
 - faire la page web qui appelle ce service
+
+https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-json-to-fastapi-and-predict-on-it-without
+ 
