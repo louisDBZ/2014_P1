@@ -3,12 +3,14 @@ from fastapi import APIRouter
 # a noter: il faudra faire une focntion pour la gestion de l'id
 
 router = APIRouter(
-    prefix="/posts",
-    tags=['Posts']
+    prefix="/file",
+    tags=['File']
 )
 
 @router.post("/")
-def post_file():
-    print("hello")
-    return {"message": "Hello World 2 "}
+def upload_file():
+    return {"message": "upload_file "}
 
+@router.get("/{id}")
+def get_file():
+    return {"message": "get_file "}

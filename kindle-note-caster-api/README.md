@@ -109,6 +109,11 @@ Error loading ASGI app. Could not import module "main".  => aller dans le dossie
 
 `pip install python-multipart`
 
+# documentation
+
+disponible à l'adresse: http://127.0.0.1:8000/docs
+
+
 # TO DO:
 
 
@@ -125,3 +130,5 @@ https://iq-inc.com/importerror-attempted-relative-import/
 - déploiement et tests
 
 - terminer la relecture de mes notes
+
+- faire la page web qui appelle ce service

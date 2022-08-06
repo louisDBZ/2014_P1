@@ -40,6 +40,7 @@ class Post(PostBase): # a modifier
 # en dessous (a garder): les actions pour la gestion des users
 
 class UserOut(BaseModel):
+    # LE MOdel userout sert pour la route create_model
     id: int
     email: EmailStr
     created_at: datetime
