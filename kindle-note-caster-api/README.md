@@ -111,7 +111,7 @@ Error loading ASGI app. Could not import module "main".  => aller dans le dossie
 
 `pip install python-docx`
 
-`pip install pandas`
+`pip install pandas` voir les versions au plus clair: 1.2.4 ou 1.4.3?
 
 # documentation
 
@@ -136,4 +136,7 @@ https://iq-inc.com/importerror-attempted-relative-import/
 - faire la page web qui appelle ce service
 
 https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-json-to-fastapi-and-predict-on-it-without
- 
+
+- à creuser: bel affichage d'un csv dans un terminal intelliji 
+
+-transfomer ces print en console.log
