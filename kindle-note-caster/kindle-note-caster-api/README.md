@@ -128,6 +128,15 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 # TO DO:
 
+## MUST HAVE
+
+- add in the DB the title read by an user and display it when Get_user
+
+- Deploy to docker (section 15)
+
+- Automatic tests with pytests ( section 16) 
+
+## NICE TO HAVE
 
 - remettre de l'ordre dans mes terminaux, ou les imports se font
 
@@ -135,17 +144,13 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 https://iq-inc.com/importerror-attempted-relative-import/
 
-- faire les posts et mettre en place le traitement des 2 requetes (les faire asynchrones)
-
-- déploiement et tests
-
 - terminer la relecture de mes notes
 
 - faire la page web qui appelle ce service
 
 https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-json-to-fastapi-and-predict-on-it-without
 
-- à creuser: bel affichage d'un csv dans un terminal intelliji 
+- à creuser: bel affichage d'un dataframe dans un terminal intelliji 
 
 - transfomer ces print en console.log
 

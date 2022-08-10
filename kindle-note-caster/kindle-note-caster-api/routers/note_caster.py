@@ -5,10 +5,7 @@ import docx
 import json
 import re
 
-### Nom des chemins: le but est de les remplacer par les files rapidement
 
-i_chemin_du_csv = "C.csv"
-o_chemin_du_word = "The_Customer_Success_Professionals_Handbook.docx"
 o_texte = ""
 List_mot_a_enlever = ['nan', 'Annotation']  # ce sont en fait les titres des colonnes (cf amélioration possible)
 
@@ -19,30 +16,30 @@ basefilepath = ""
 
 ### fonctions:
 
-def ajouter_surlignement(surlignement):
+def ajouter_surlignement(surlignement:str):
     global o_texte
     if (str(surlignement) not in List_mot_a_enlever):
         o_texte = o_texte + '\n\n' + str(surlignement)
 
 
-def ajouter_note(note):
+def ajouter_note(note:str):
     global o_texte
     if (str(note) not in List_mot_a_enlever):
         o_texte = o_texte + ' => ' + str(note)
 
 
-def num_emplacement(emplacement):
+def num_emplacement(emplacement:str):
     """not used"""
     return int(emplacement[12:])
 
 
-def check_hashtag(note):
+def check_hashtag(note:str):
     if '@@' in note:
         return True
     return False
 
 
-def extract_keyword(text):
+def extract_keyword(text:str):
     # example: sales de "##sales commentaire1 commentaire2"
     pattern = re.compile(r"""(?<=@@)([A-ù]+)(?= )""")
     match = re.search(pattern, text)
@@ -51,12 +48,12 @@ def extract_keyword(text):
     print("error: keyword  not found")
 
 
-def extract_note(text):
+def extract_note(text:str):
     # example: "commentaire1 commentaire2" de "##sales commentaire1 commentaire2"
     return (text.replace('@@' + extract_keyword(text), '=>'))
 
 
-def ajouter_au_fichier(filepath, surlignement, note):
+def ajouter_au_fichier(filepath:str, surlignement:str, note:str):
     # ajout de la basefilepath pour correspondre au changement de dossier
     filepath = basefilepath + filepath
     # ajout de la note et du surlignement
@@ -71,7 +68,7 @@ def ajouter_au_fichier(filepath, surlignement, note):
 
 ### script
 
-def process_csv_to_docx(chemin_du_csv, chemin_du_word):
+def process_csv_to_docx(chemin_du_csv:str, chemin_du_word:str):
     #pour indenter plusieurs lignes: ctrl alt L et tab
 
     '''
@@ -102,8 +99,6 @@ def process_csv_to_docx(chemin_du_csv, chemin_du_word):
 
     with open(chemin_du_csv, encoding="utf8", errors='ignore') as fichier:
         contenu = fichier.read()
-
-
 
     # load file_mapper
     file_mapper = json.load(open(chemin_du_file_mapper))
@@ -136,3 +131,8 @@ def process_csv_to_docx(chemin_du_csv, chemin_du_word):
     mydoc.add_paragraph(o_texte)
     mydoc.save(chemin_du_word)
     print("operation completed")
+
+
+def extract_Title( chemin_du_csv:str):
+    # se rappeler de cette façon de typer
+    return chemin_du_csv
