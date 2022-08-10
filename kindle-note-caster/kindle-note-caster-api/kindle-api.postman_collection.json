@@ -47,9 +47,9 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "kindle-file",
+							"key": "file",
 							"type": "file",
-							"src": []
+							"src": "/C:/Users/Louis Debouzy/Documents/GitHub/2014_P1/kindle-note-caster-api/README.md"
 						}
 					]
 				},
@@ -64,51 +64,6 @@
 					"port": "8000",
 					"path": [
 						"file"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get file",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NTk2MzQxOTJ9.7fDjzg6CfDuOyAh5rjcW_ig9cQpJ7tn8vZixFI7QI78",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "kindle-file",
-							"type": "file",
-							"src": []
-						}
-					]
-				},
-				"url": {
-					"raw": "127.0.0.1:8000/file/1",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"file",
-						"1"
 					]
 				}
 			},

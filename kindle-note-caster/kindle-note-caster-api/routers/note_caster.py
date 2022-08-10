@@ -71,7 +71,7 @@ def ajouter_au_fichier(filepath, surlignement, note):
 
 ### script
 
-def process_csv_to_docx(i_chemin_du_csv, o_chemin_du_word)
+def process_csv_to_docx(chemin_du_csv, chemin_du_word):
     #pour indenter plusieurs lignes: ctrl alt L et tab
 
     '''
@@ -79,14 +79,31 @@ def process_csv_to_docx(i_chemin_du_csv, o_chemin_du_word)
     ce que je ne comprends pas, il faut lancer un csv simple une première fois avant que cela fonctionne: le but du fichier D
     '''
 
-    # le csv "simple" mais inutile
+    # 1- le csv "simple" mais inutile
     df = pd.read_csv("C.csv")
 
+    # 2- le csv interessant
+    # ici j'ai mis un try catch à cause des différents formats des csv
 
-    # le csv interessant
-    df = pd.read_csv(i_chemin_du_csv)  # ,on_bad_lines={ 'skip'}) #on_bad_lines{‘error’, ‘warn’, ‘skip’}
-    with open(i_chemin_du_csv, encoding="utf8", errors='ignore') as fichier:
+    try:
+        df = pd.read_csv(chemin_du_csv,sep=',')#, header=None,error_bad_lines='skip')
+        # on_bad_lines= 'skip' pour la nouvelle version de python
+    except pd.errors.ParserError: # pas sur de ce OSError
+        print('cannot open')
+    else:
+        print(
+            """
+            from Amazon, the expected separator/delimitor: une virgule
+            expected qualifiers ( end of line):  retour à la ligne ( pas de ;) 
+            """
+        )
+
+    # télécharger l'intelliji data viewer
+
+    with open(chemin_du_csv, encoding="utf8", errors='ignore') as fichier:
         contenu = fichier.read()
+
+
 
     # load file_mapper
     file_mapper = json.load(open(chemin_du_file_mapper))
@@ -117,5 +134,5 @@ def process_csv_to_docx(i_chemin_du_csv, o_chemin_du_word)
 
     mydoc = docx.Document()
     mydoc.add_paragraph(o_texte)
-    mydoc.save(o_chemin_du_word)
+    mydoc.save(chemin_du_word)
     print("operation completed")
