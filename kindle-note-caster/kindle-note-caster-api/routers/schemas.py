@@ -4,6 +4,7 @@ from typing import Optional
 
 from pydantic.types import conint
 
+# question: pourquoi le post a été enlevé???
 '''
 
 pydantic => schéma qui sert à décrire à quoi un post devrait ressembler
@@ -39,15 +40,25 @@ class Post(PostBase): # a modifier
 """
 # en dessous (a garder): les actions pour la gestion des users
 
-class UserOut(BaseModel):
-    # LE MOdel userout sert pour la route create_model
-    id: int
+class UserIn(BaseModel):
+    # LE MOdel userin sert pour la route create_model
+    user_id: int
     email: EmailStr
     created_at: datetime
 
     class Config:
         orm_mode = True
 
+class UserOut(BaseModel):
+    # LE MOdel userout sert pour la route get_user
+    # a supprimer si en doublon
+    user_id: int
+    email: EmailStr
+    created_at: datetime
+    #title: str
+
+    class Config:
+        orm_mode = True
 
 class UserCreate(BaseModel):
     email: EmailStr

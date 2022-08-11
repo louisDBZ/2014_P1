@@ -29,12 +29,12 @@ from .database import mydefault_post,mydefault_user
 class Post(Base):
     # table post document , title of the kindle document, created at, user
     __tablename__ = "posts"
-    id = Column(Integer, primary_key=True, nullable=False,default=mydefault_post)
+    post_id = Column(Integer, primary_key=True, nullable=False,default=mydefault_post)
     title = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
     user_id = Column(Integer, ForeignKey(
-        "users.id", ondelete="CASCADE"), nullable=False)
+        "users.user_id", ondelete="CASCADE"), nullable=False)
 
     owner = relationship("User") # a quoi sert cette ligne???
 
@@ -42,7 +42,7 @@ class Post(Base):
 class User(Base):
     # table users , column id, email, password, created_at
     __tablename__ = "users"
-    id = Column(Integer, primary_key=True, nullable=False,default=mydefault_user)
+    user_id = Column(Integer, primary_key=True, nullable=False,default=mydefault_user)
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True),

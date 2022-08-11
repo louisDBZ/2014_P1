@@ -9,6 +9,8 @@ lien du tuto: https://www.youtube.com/watch?v=0sOvCWFmrtA&t=499s
 
 - aller sur pgadmin, entrer le mdp master et le mot de passe du user 'postgre'
 
+- aller sur Schemas>Public>Table
+
 https://www.postgresql.org/ftp/pgadmin/pgadmin4/v6.11/windows/
 
 https://www.pgadmin.org/download/pgadmin-4-windows/
@@ -140,7 +142,7 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 - remettre de l'ordre dans mes terminaux, ou les imports se font
 
--remettre de l'ordre dans mes imports entre les dossiers, et lire:
+- remettre de l'ordre dans mes imports entre les dossiers, et lire:
 
 https://iq-inc.com/importerror-attempted-relative-import/
 
@@ -156,4 +158,4 @@ https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-
 
 - refaire le git ignore de Lecture
 
-
+- la db semble avoir un pb au démarrage, reloading de la db

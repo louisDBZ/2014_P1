@@ -29,14 +29,14 @@ def get_db():
         db.close()
 
 #méthode barbare pour la gestion des indexes
-# ne s'incremente pas automatiquement et besoin de valeur par défault, ne pas passer par new_user.id
+# ne s'incremente pas automatiquement et besoin de valeur par défault, ne pas passer par new_user.user_id
 #https://docs.sqlalchemy.org/en/14/core/defaults.html
 # a régler car à chaque fois repart de 1
 
 
 with engine.connect() as con:
-    quser = con.execute("""SELECT  max(id) FROM users """)
-    qposts = con.execute("""select max(id) from posts""")
+    quser = con.execute("""SELECT  max(user_id) FROM users """)
+    qposts = con.execute("""select max(post_id) from posts""")
 
 for row in quser:
     #<class 'sqlalchemy.engine.row.LegacyRow'>, conversion dégueue mais rapide car pas de get?
