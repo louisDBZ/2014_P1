@@ -132,7 +132,7 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 ## MUST HAVE
 
-- add in the DB the title read by an user and display it when Get_user
+- add in the DB the title read by an user 
 
 - Deploy to docker (section 15)
 

@@ -9,8 +9,6 @@ router = APIRouter(
     tags=['Users']
 )
 
-
-
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.UserIn)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
@@ -30,42 +28,54 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 
-@router.get('/{id}', response_model=schemas.UserOut)
+@router.get('/{id}')
 def get_user(id: int, db: Session = Depends(get_db), ):
-    '''
-     requete à retravailler car on veut l'historique: on doit faire un join des
-     2 tables avec un historique sous form json
+    """comme je veux un modèle spécifique en sortie, je n'utilise pas de modèle ( response_model=schemas.UserOut),
+    je construis moi meme mon JSON de sortie:
 
+    retour attendu:
     {
     "user_id": 3,
     "email": "sisterp3.debouzy@gmail.fr",
 
     "user created_at": "2022-08-04T17:32:57.849154+02:00"
 
-    "history":
+    "posts":
     [
     {"title":"La bible","created_at": "2022-08-04T17:32:57.849154+02:00" },
     {"title":"Le Coran","created_at": "2022-08-04T17:32:57.849154+02:00" }
     ]
     }
 
-    select * from posts as A
+    je voulais utiliser  SQLAlchemy et utiliser le join des
+     2 tables pour essayer de retrouver la requete suivante:
+    a noter: pas besoin de faire le on (models.Post.user_id==models.User.user_id), sql alchemy se sert de la foreignkey
+
+    select  post_created_at, title,email,user_created_at,  C.user_id
+    from posts as A
     join users as C
     ON
     A.user_id=C.user_id
 
-    result = session.query(Customer).join(Invoice).filter(Invoice.amount == 8500)
-    '''
+    """
+    # table User
 
-    user = db.query(models.User).filter(models.User.user_id == id).first()
-    #user = db.query(models.User).join(models.Post,models.Post.owner_id==models.User.id).filter(models.User.id == id).first()
-    print(user)
+    user_profile = db.query(models.User).filter(models.User.user_id == id).first()
 
-    # comme on va avoir plusieurs lignes, on va avoir un casting à faire en JSON : enlever le first
-
-
-    if not user:
+    if not user_profile:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"User with id: {id} does not exist")
 
-    return user
+    # table Post
+
+    post_history = db.query(models.Post).filter(models.Post.user_id == id).all()
+    # all = des "first" dans un tableau
+
+    def Json_caster(user_profile,post_history):
+        dico= {"user_id": user_profile.user_id,"email":user_profile.email, "user_created_at":user_profile.user_created_at,"history": []}
+        for row in post_history:
+            print (row.user_id,row.title,row.post_created_at)
+            dico["history"].append({"title":row.title,"post_created_at":row.post_created_at})
+        return dico
+
+    return Json_caster(user_profile,post_history)

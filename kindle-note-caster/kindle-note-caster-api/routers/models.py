@@ -31,7 +31,7 @@ class Post(Base):
     __tablename__ = "posts"
     post_id = Column(Integer, primary_key=True, nullable=False,default=mydefault_post)
     title = Column(String, nullable=False)
-    created_at = Column(TIMESTAMP(timezone=True),
+    post_created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
     user_id = Column(Integer, ForeignKey(
         "users.user_id", ondelete="CASCADE"), nullable=False)
@@ -45,7 +45,7 @@ class User(Base):
     user_id = Column(Integer, primary_key=True, nullable=False,default=mydefault_user)
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
-    created_at = Column(TIMESTAMP(timezone=True),
+    user_created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
 
 
