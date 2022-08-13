@@ -1,6 +1,12 @@
-from fastapi import APIRouter, UploadFile,File, HTTPException
+from fastapi import APIRouter, UploadFile,File, HTTPException, Depends
 from fastapi.responses import FileResponse,StreamingResponse
-from .note_caster import process_csv_to_docx
+from .note_caster import process_csv_to_docx,extract_Title
+
+from .config import settings
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
+import time
 
 """
 grosse question de design qui se pose ici:
@@ -55,4 +61,47 @@ async def upload_file(file: UploadFile = File(...)):
 
     process_csv_to_docx(file.filename,o_chemin_du_word)
 
+    print(extract_Title(file.filename))
+    create_post(4,'the room')
+
     return StreamingResponse(iterfile(), media_type="application/msword")
+
+def create_post(user_id :str , title:str):
+    """
+    comme ici on ne veut pas utiliser une route fast APi alors le Depends de fastapi est inutilisable
+    https://github.com/tiangolo/fastapi/issues/1693#issuecomment-665833384
+
+    passage par psycopg2
+    https://pynative.com/python-postgresql-insert-update-delete-table-data-to-perform-crud-operations/
+    """
+
+    try:
+        conn = psycopg2.connect(host=settings.database_hostname, port=settings.database_port,
+                                database=settings.database_name, user=settings.database_username,
+                                password=settings.database_password, cursor_factory=RealDictCursor)
+
+        cursor = conn.cursor()
+        print("Database connection was succesfull!")
+        #INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ('indien',50,4,'2022-08-04 17:33:03.097168+02')
+
+        #A changer
+        post_id=53
+        date_now='2022-08-04 17:33:03.097168+02'
+
+
+        postgres_insert_query = " INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ( '"+title+"',"+str(post_id)+","+str(user_id)+",'"+date_now+"')"
+        print("postgres_insert_query",postgres_insert_query)
+        cursor.execute(postgres_insert_query)
+
+        conn.commit()
+        count = cursor.rowcount
+        print(count, "Record inserted successfully into mobile table")
+
+    except (Exception, psycopg2.Error) as error:
+        print("Failed to insert record into mobile table", error)
+    finally:
+        # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")

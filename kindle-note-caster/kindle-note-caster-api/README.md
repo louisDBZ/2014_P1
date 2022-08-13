@@ -140,6 +140,10 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 ## NICE TO HAVE
 
+-gestion des print et des logging
+
+https://pythonexamples.org/python-logging-info/
+
 - remettre de l'ordre dans mes terminaux, ou les imports se font
 
 - remettre de l'ordre dans mes imports entre les dossiers, et lire:
@@ -159,3 +163,5 @@ https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-
 - refaire le git ignore de Lecture
 
 - la db semble avoir un pb au démarrage, reloading de la db
+
+- faire un fstring pour apprendre:

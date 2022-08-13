@@ -17,7 +17,6 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
-
     new_user = models.User(**user.dict())
 
     db.add(new_user)
@@ -29,8 +28,9 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
 
 @router.get('/{id}')
-def get_user(id: int, db: Session = Depends(get_db), ):
+def get_user(id: int, db: Session = Depends(get_db)):
     """comme je veux un modèle spécifique en sortie, je n'utilise pas de modèle ( response_model=schemas.UserOut),
+    c'est surement possible mais je n'ai pas regardé comment faire
     je construis moi meme mon JSON de sortie:
 
     retour attendu:
@@ -74,7 +74,6 @@ def get_user(id: int, db: Session = Depends(get_db), ):
     def Json_caster(user_profile,post_history):
         dico= {"user_id": user_profile.user_id,"email":user_profile.email, "user_created_at":user_profile.user_created_at,"history": []}
         for row in post_history:
-            print (row.user_id,row.title,row.post_created_at)
             dico["history"].append({"title":row.title,"post_created_at":row.post_created_at})
         return dico
 

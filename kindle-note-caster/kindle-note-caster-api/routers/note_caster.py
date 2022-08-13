@@ -4,6 +4,8 @@ import numpy as np
 import docx
 import json
 import re
+import csv
+import logging
 
 
 o_texte = ""
@@ -12,6 +14,7 @@ List_mot_a_enlever = ['nan', 'Annotation']  # ce sont en fait les titres des col
 # le file mapper est à aller chercher à l'extérieur du projet
 chemin_du_file_mapper = '../file_mapper.json'
 basefilepath = ""
+
 
 
 ### fonctions:
@@ -87,13 +90,14 @@ def process_csv_to_docx(chemin_du_csv:str, chemin_du_word:str):
         # on_bad_lines= 'skip' pour la nouvelle version de python
     except pd.errors.ParserError: # pas sur de ce OSError
         print('cannot open')
-    else:
+        # à faire passer en logging
         print(
             """
-            from Amazon, the expected separator/delimitor: une virgule
-            expected qualifiers ( end of line):  retour à la ligne ( pas de ;) 
+from Amazon, the expected separator/delimitor: une virgule
+expected qualifiers ( end of line):  retour à la ligne ( pas de ;) 
             """
         )
+        # à faire passer en logging
 
     # télécharger l'intelliji data viewer
 
@@ -130,9 +134,27 @@ def process_csv_to_docx(chemin_du_csv:str, chemin_du_word:str):
     mydoc = docx.Document()
     mydoc.add_paragraph(o_texte)
     mydoc.save(chemin_du_word)
-    print("operation completed")
+    # logging à la place de print
+    # "operation completed" => mettre qch de plus explicite
+    # la commande est alors à modifier
+    # à faire
+    #logging.info("process_csv_to_docx finished")
+    print("process_csv_to_docx finished")
 
 
-def extract_Title( chemin_du_csv:str):
+
+def extract_Title( chemin_du_csv:str) -> str:
     # se rappeler de cette façon de typer
-    return chemin_du_csv
+
+    #with open(chemin_du_csv, newline='') as csvfile:
+     #   csvreader = csv.reader(csvfile)
+        # by default,  delimiter=',' et on a le bon lineterminator
+        # print(csvreader.line_num, csvreader.__next__())
+        #for row in reader:
+         #   print(', '.join(row))
+        #print(len(reader1))
+        #title=reader[1]
+
+    #print(title)
+
+    return "title"

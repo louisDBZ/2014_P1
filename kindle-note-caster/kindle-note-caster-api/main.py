@@ -23,10 +23,23 @@ from routers import post, user, auth
 
 from routers.database import engine
 from routers import models
+import logging
 
 models.Base.metadata.create_all(bind=engine) # cette ligne sert à gérer l'ORM de models et database
 
 app = FastAPI()
+
+"""
+#create a logger
+logger = logging.getLogger('mylogger')
+#set logger level
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler('mylog.log')
+# create a logging format
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logging.info("initialize")"""
 
 # pourquoi utiliser un router?: to split pour une meilleure organisation?
 app.include_router(post.router)
