@@ -6,8 +6,10 @@ from .config import settings
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-import time
+import datetime
 
+from .database import mydefault_post,mydefault_user
+from . import oauth2
 """
 grosse question de design qui se pose ici:
 
@@ -40,8 +42,11 @@ router = APIRouter(
 )
 
 @router.post("/")
-async def upload_file(file: UploadFile = File(...)):
+async def upload_file(file: UploadFile = File(...), current_user: int = Depends(oauth2.get_current_user)):
+    """
+    rappel il faut mettre le token dans le post
 
+    """
     # a noter la syntaxe est différente selon la version de python
 
     def iterfile():
@@ -61,12 +66,13 @@ async def upload_file(file: UploadFile = File(...)):
 
     process_csv_to_docx(file.filename,o_chemin_du_word)
 
-    print(extract_Title(file.filename))
-    create_post(4,'the room')
+    # upload a trace to the db
+
+    create_post(current_user.user_id,'the room',mydefault_post())
 
     return StreamingResponse(iterfile(), media_type="application/msword")
 
-def create_post(user_id :str , title:str):
+def create_post(user_id :str , title:str, post_id:int):
     """
     comme ici on ne veut pas utiliser une route fast APi alors le Depends de fastapi est inutilisable
     https://github.com/tiangolo/fastapi/issues/1693#issuecomment-665833384
@@ -84,12 +90,7 @@ def create_post(user_id :str , title:str):
         print("Database connection was succesfull!")
         #INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ('indien',50,4,'2022-08-04 17:33:03.097168+02')
 
-        #A changer
-        post_id=53
-        date_now='2022-08-04 17:33:03.097168+02'
-
-
-        postgres_insert_query = " INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ( '"+title+"',"+str(post_id)+","+str(user_id)+",'"+date_now+"')"
+        postgres_insert_query = " INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ( '"+title+"',"+str(post_id)+","+str(user_id)+",'"+str(datetime.datetime.now())+"')"
         print("postgres_insert_query",postgres_insert_query)
         cursor.execute(postgres_insert_query)
 

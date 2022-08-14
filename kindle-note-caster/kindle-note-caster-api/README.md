@@ -164,4 +164,6 @@ https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-
 
 - la db semble avoir un pb au démarrage, reloading de la db
 
-- faire un fstring pour apprendre:
+- faire un fstring pour apprendre
+
+- recorriger les doctypes
