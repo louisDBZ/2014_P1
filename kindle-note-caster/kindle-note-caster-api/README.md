@@ -132,11 +132,11 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 ## MUST HAVE
 
-- add in the DB the title read by an user 
-
 - Deploy to docker (section 15)
 
 - Automatic tests with pytests ( section 16) 
+
+- faire un clean la doc fastapi
 
 ## NICE TO HAVE
 

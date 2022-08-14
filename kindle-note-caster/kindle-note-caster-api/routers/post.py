@@ -68,7 +68,11 @@ async def upload_file(file: UploadFile = File(...), current_user: int = Depends(
 
     # upload a trace to the db
 
-    create_post(current_user.user_id,'the room',mydefault_post())
+    #print(file.filename)
+
+    #print(extract_Title(file.filename))
+
+    create_post(current_user.user_id,str(extract_Title(file.filename)),mydefault_post())
 
     return StreamingResponse(iterfile(), media_type="application/msword")
 

@@ -144,17 +144,18 @@ expected qualifiers ( end of line):  retour à la ligne ( pas de ;)
 
 
 def extract_Title( chemin_du_csv:str) -> str:
-    # se rappeler de cette façon de typer
+    '''    # se rappeler de cette façon de typer la fonction
 
-    #with open(chemin_du_csv, newline='') as csvfile:
-     #   csvreader = csv.reader(csvfile)
-        # by default,  delimiter=',' et on a le bon lineterminator
-        # print(csvreader.line_num, csvreader.__next__())
-        #for row in reader:
-         #   print(', '.join(row))
-        #print(len(reader1))
-        #title=reader[1]
+    # 2 façons d'extraire le titre:
+    #- soit je vais le chercher bien écrit dans le csv
+    #- soit je vais aller le chercher dans le titre donné au fichier
 
-    #print(title)
 
-    return "title"
+    #inutile d'utiliser csv reader -> on va le chercher dans le titre
+    # by default,  delimiter=',' et on a le bon lineterminator ( le backslash n)
+    with open(chemin_du_csv, 'r',newline='') as csvfile:
+        csvreader = csv.reader(csvfile)
+        for row in csvreader:
+            print(row)'''
+
+    return chemin_du_csv[:-4].replace("'"," ")
