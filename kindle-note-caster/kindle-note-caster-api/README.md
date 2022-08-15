@@ -21,7 +21,7 @@ https://www.pgadmin.org/docs/pgadmin4/6.7/connect_to_server.html
 
 problème: ne comprend pas pourquoi cela marche: après ré-installation et attente, soudainement ça a marché. 
 
-# créer un env
+# créer un environment 
 
 pour mettre les codes de la db ( meme si écrit en clair dans mon code)
 
@@ -46,21 +46,26 @@ ALGORITHM=
 ACCESS_TOKEN_EXPIRE_MINUTES=
 ```
 
+
 # le driver pour la bdd psycopg2
 
 https://www.psycopg.org/docs/usage.html#passing-parameters-to-sql-queries
 
-# l'ORM ( Ogject relational Mapper): sqlachelmy
+# installation des librairies et package python
+
+pip install -r requirements.txt
+
+### l'ORM ( Object relational Mapper): sqlachelmy
 
 `pip install sqlalchemy`
 
-# pydantic
+### pydantic
 
 `pip install pydantic[dotenv]`
 
 `pip install pydantic[email]`
 
-# API 
+### API 
 
  télecharger uvicorn
 
