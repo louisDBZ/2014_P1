@@ -124,6 +124,14 @@ Error loading ASGI app. Could not import module "main".  => aller dans le dossie
 
 disponible à l'adresse: http://127.0.0.1:8000/docs
 
+# deploiement
+
+### Docker
+
+lancer docker desktop et
+`docker pull python`
+`docker build -t kindle-note-caster-app .`
+
 
 # exemple pour la config du file_mapper.json
 ```json
@@ -145,7 +153,7 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 ## NICE TO HAVE
 
--gestion des print et des logging
+- gestion des print et des logging
 
 https://pythonexamples.org/python-logging-info/
 
@@ -172,3 +180,6 @@ https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-
 - faire un fstring pour apprendre
 
 - recorriger les doctypes
+
+- pourquoi dans mon requirement, j'ai des trucs comme cela:
+jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
