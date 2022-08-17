@@ -1,0 +1,39 @@
+#dans mon docker compose, je vais avoir toutes les instructions qui vont permettre
+#de remplacer la commande docker run + u n truc interminable
+
+version: "3"
+services:
+  api:
+    # c'est exactement la commande docker build ...
+    build: .
+    # ouvrir des ports pour l'api
+    ports:
+      - 8000:8000
+      # routing: le premier est le port sur localhost, le second est sur mon container
+    volumes:
+      - ./:/usr/src/app
+    # env_file:
+    #     - ./.env
+    environment:
+      - DATABASE_HOSTNAME=localhost
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=louis.debouzy
+      - DATABASE_NAME=postgre
+      - DATABASE_USERNAME=postgres
+      - SECRET_KEY=6610374e18099ce7424c934b3f36db7bcb12389a6ccafc53b2d24533c5a4a9cc
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=60
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=louis.debouzy
+      - POSTGRES_DB=postgre
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:

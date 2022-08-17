@@ -110,10 +110,13 @@ Error loading ASGI app. Could not import module "main".  => aller dans le dossie
 
 # passlib
 
+Passlib is a password hashing library for Python 2 & 3, which provides cross-platform implementations of over 30 password hashing algorithms, as well as a framework for managing existing password hashes
+
 `pip install passlib`
 
 # ?
 
+python-multipart is an Apache2 licensed streaming multipart parser for Python
 `pip install python-multipart`
 
 `pip install python-docx`
@@ -129,8 +132,22 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 ### Docker
 
 lancer docker desktop et
-`docker pull python`
+
+`docker pull python` inutile? 
+
 `docker build -t kindle-note-caster-app .`
+
+`docker image ls` pour voir toutes les images
+
+`docker-compose up -d` comment on applique le docker-compose-prod? 
+
+`docker ps -a` pour voir les containers
+
+`docker logs nom_du_container` pour voir les logs d'un container
+
+`docker compose down`
+
+et après on accède via fast api comme d'habitude, il y aura une redirection
 
 
 # exemple pour la config du file_mapper.json
