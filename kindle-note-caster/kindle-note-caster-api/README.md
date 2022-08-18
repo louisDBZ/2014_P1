@@ -135,7 +135,7 @@ lancer docker desktop et
 
 `docker pull python` inutile? 
 
-`docker build -t kindle-note-caster-app .`
+`docker build -t kindle-note-caster-app .` # inutile car build dans le docker compose??
 
 `docker image ls` pour voir toutes les images
 
@@ -145,7 +145,7 @@ lancer docker desktop et
 
 `docker logs nom_du_container` pour voir les logs d'un container
 
-`docker compose down`
+`docker compose down` ( pareil sans le - ? )
 
 et après on accède via fast api comme d'habitude, il y aura une redirection
 
@@ -200,3 +200,12 @@ https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-
 
 - pourquoi dans mon requirement, j'ai des trucs comme cela:
 jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
+
+- comprendre pourquoi autant de consommation de ressource alors que container taille inférieure VM
+
+# la ou j'en suis:
+
+docker compose: soucis pour connecter la base de donnée
+le code a été mis dans un try catch mais ce n'est pas le bon code qui est compilé par 
+
+![img.png](documentation-resources/img.png)

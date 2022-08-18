@@ -32,11 +32,20 @@ def get_db():
 # ne s'incremente pas automatiquement et besoin de valeur par défault, ne pas passer par new_user.user_id
 #https://docs.sqlalchemy.org/en/14/core/defaults.html
 # a régler car à chaque fois repart de 1
+# a noter combien de fois tournent ces requetes? 1 fois au démarrage
+#faire un try catch sinon on a un problème d'un container qui s'arrete totalement
 
-
-with engine.connect() as con:
-    quser = con.execute("""SELECT  max(user_id) FROM users """)
-    qposts = con.execute("""select max(post_id) from posts""")
+try:
+    with engine.connect() as con:
+        quser = con.execute("""SELECT  max(user_id) FROM users """)
+        qposts = con.execute("""select max(post_id) from posts""")
+        print("quser and qpost succeded")
+except Exception as error:
+    # si je nai pas compris la raison, je setup les 2 variables à 1
+    quser,qposts=0,0
+    print("Connecting to database failed")
+    print("Error:", error)
+    time.sleep(2)
 
 for row in quser:
     #<class 'sqlalchemy.engine.row.LegacyRow'>, conversion dégueue mais rapide car pas de get?
@@ -81,7 +90,4 @@ while True:
         print("Error:", error)
         time.sleep(2)
        # break
-
-
-
 '''

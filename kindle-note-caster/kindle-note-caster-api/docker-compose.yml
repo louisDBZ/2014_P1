@@ -1,5 +1,5 @@
 #dans mon docker compose, je vais avoir toutes les instructions qui vont permettre
-#de remplacer la commande docker run + u n truc interminable
+#de remplacer la commande 'docker run' + un truc interminable
 
 version: "3"
 services:
@@ -23,6 +23,7 @@ services:
       - SECRET_KEY=6610374e18099ce7424c934b3f36db7bcb12389a6ccafc53b2d24533c5a4a9cc
       - ALGORITHM=HS256
       - ACCESS_TOKEN_EXPIRE_MINUTES=60
+    # IP localhost 127.0.0.1 quel interet de mettre --host 0.0.0.0
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
       - postgres
@@ -33,6 +34,7 @@ services:
       - POSTGRES_PASSWORD=louis.debouzy
       - POSTGRES_DB=postgre
     volumes:
+      #nom_du_volume : chemin dans le container pour écrire dedans postgre
       - postgres-db:/var/lib/postgresql/data
 
 volumes:
