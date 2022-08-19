@@ -12,6 +12,28 @@ Je cherche à l'automatiser
 
 contacter Amazon?
 
-# Architecture:
+# Architecture logicielle
 
 ![img.png](Diagram.png)
+
+to do: changer chrome par postman
+
+pourquoi psycopg et sql alchemy?
+
+car besoin de connaitre les id  de la BDD en read-only
+
+
+# Architecture des données
+
+to do: la mettre en diagramme de classe
+
+ user, password
+
+et une ligne avec user, date et titre du livre
+
+# Fonctionalités 
+
+to do: le mettre en diagramme UML
+
+- post excel file
+- auth et user

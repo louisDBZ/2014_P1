@@ -79,16 +79,11 @@ lancer la commande depuis le dossier kindle-...
 
 ou mieux aller sur postman
 
-# plan de la database
+# Alembic
 
-une BDD avec user, password
+https://alembic.sqlalchemy.org/en/latest/
 
-et une ligne avec user, date et titre du livre
-
-
-post excel file, manage exception
-get statistcs de l'api
-auth et user
+`pip install alembic`
 
 # gestion de l'auth avec jwt/ Oauth2
 
