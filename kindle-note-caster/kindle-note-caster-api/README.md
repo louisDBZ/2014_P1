@@ -73,7 +73,7 @@ pip install -r requirements.txt
 
 https://fastapi.tiangolo.com/deployment/manually/
 
-lancer la commande depuis le dossier kindle-...
+lancer la commande depuis le dossier \kindle-note-caster\kindle-note-caster-api\app>
 
 `uvicorn main:app --reload`
 
