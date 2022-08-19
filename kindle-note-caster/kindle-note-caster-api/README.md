@@ -203,6 +203,8 @@ jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
 
 - comprendre pourquoi autant de consommation de ressource alors que container taille inférieure VM
 
+-revoir le nommage des colonnes pour respecter celles d'amazon
+
 # la ou j'en suis:
 
 docker compose: soucis pour connecter la base de donnée
