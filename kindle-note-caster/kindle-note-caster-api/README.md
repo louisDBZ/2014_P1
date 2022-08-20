@@ -81,9 +81,19 @@ ou mieux aller sur postman
 
 # Alembic
 
+se mettre au niveau kindle-note-caster\kindle-note-caster-api
+
+`pip install alembic` et `alembic init alembic` qui va créer les fichiers, il n'ya plus qu'à remplir
+
+pour créer une version:
+`alembic revision -m "titre de la révision` 
+et on remplit le upgrade et downgrade
+
+voir sur sur la doc> DDL details
 https://alembic.sqlalchemy.org/en/latest/
 
-`pip install alembic`
+to do: corriger les erruers quand on lance:
+`alembic current`
 
 # gestion de l'auth avec jwt/ Oauth2
 
@@ -188,6 +198,7 @@ https://stackoverflow.com/questions/64168340/how-to-send-a-file-docx-doc-pdf-or-
 - refaire le git ignore de Lecture
 
 - la db semble avoir un pb au démarrage, reloading de la db
+-> il y a un drop de toute la base, c'est la raison d'utilisation de Alembic
 
 - faire un fstring pour apprendre
 

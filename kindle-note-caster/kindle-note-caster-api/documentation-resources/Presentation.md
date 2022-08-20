@@ -14,22 +14,35 @@ contacter Amazon?
 
 # Architecture logicielle
 
-![img.png](Diagram.png)
+![img.png](SW_architecture_diagram.png)
 
 to do: changer chrome par postman
 
-pourquoi psycopg et sql alchemy?
-
-car besoin de connaitre les id  de la BDD en read-only
+pourquoi psycopg et sql alchemy? car besoin de connaitre les id  de la BDD en read-only
 
 
 # Architecture des données
 
-to do: la mettre en diagramme de classe
+###"posts"
 
- user, password
+- post_id Integer, primary_key
 
-et une ligne avec user, date et titre du livre
+- title String
+
+- post_created_at TIMESTAMP
+
+- user_id Integer ForeignKey(users
+
+###"users"
+
+- user_id Integer primary_key
+
+- email String
+
+- password String
+
+- user_created_at TIMESTAMP
+
 
 # Fonctionalités 
 
