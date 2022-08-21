@@ -167,9 +167,30 @@ installer en local heroku https://devcenter.heroku.com/articles/getting-started-
 `heroku --version` pour savoir si bien installé
 
 problème car le cmd ( invité de commande) reconnait bien mais pas le terminal intelliji ( microsoft powershell)
-variables d'environment mal configurées
+variables d'environment mal configurées -> juste besoin de redémarrer l'IDE
 
+ suivre le tuto ( du coup quel interet pour moi de faire cela?)
+
+ `heroku create nomapp` , nom de l'app globale
  
+`git push heroku main` on va pousser sur l'instance remote "heroku" notre code
+
+#### TO DO avec heroku 
+
+pour déployer sur heroku, méthode de détection: requirements à la racine du projet github
+
+=> importance de faire un projet github uniqueemnt dédié au projet
+
+=> création d'un nouveau projet github
+
+=> pb pour utiliser pip
+
+https://pip.pypa.io/en/stable/installation/
+
+=> seconde solution: mettre le procfile et le requirements à la racine de du projet 2014-P
+
+=> 3ème: vider tout ce qui ne concerne pas ce projet et le mettre dans un nouveau repo github
+
 
 ### Docker ( on ne déploie plus une VM mais un container)
 
