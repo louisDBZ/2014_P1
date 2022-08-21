@@ -79,6 +79,28 @@ lancer la commande depuis le dossier \kindle-note-caster\kindle-note-caster-api\
 
 ou mieux aller sur postman
 
+# AuthN management
+
+### gestion de l'auth avec jwt/ Oauth2
+
+`pip install python-jose[cryptography]`
+
+commande pour générer arbitrairement la clé de l'algorithme, à mettre dans le .env:
+
+`openssl rand -hex 32`
+
+https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
+
+pour décoder les jwt:
+
+https://jwt.io/
+
+### passlib
+
+Passlib is a password hashing library for Python 2 & 3, which provides cross-platform implementations of over 30 password hashing algorithms, as well as a framework for managing existing password hashes
+
+`pip install passlib`
+
 # Alembic ( db migration tool)
 
 utile quand tu migres d'une db à une autre (de local à ubuntu VM puis à heroku)
@@ -107,38 +129,30 @@ pour changer de version à celle au desus / en dessous:
 `alembic downgrade down_revision_id` ou `alembic downgrade -1` et on peut changer le 1 par n'importe quel nb
 
 
-# gestion de l'auth avec jwt/ Oauth2
-
-`pip install python-jose[cryptography]`
-
-commande pour générer arbitrairement la clé de l'algorithme, à mettre dans le .env:
-
-`openssl rand -hex 32`
-
-https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
-
-pour décoder les jwt:
-
-https://jwt.io/
 
 # errors:
 
 Error loading ASGI app. Could not import module "main".  => aller dans le dossier kindle
-
-# passlib
-
-Passlib is a password hashing library for Python 2 & 3, which provides cross-platform implementations of over 30 password hashing algorithms, as well as a framework for managing existing password hashes
-
-`pip install passlib`
 
 # ?
 
 python-multipart is an Apache2 licensed streaming multipart parser for Python
 `pip install python-multipart`
 
+# data processing
+
 `pip install python-docx`
 
 `pip install pandas` voir les versions au plus clair: 1.2.4 ou 1.4.3?
+
+exemple pour la config du file_mapper.json:
+
+```json
+{
+"marketing": "Lecture/Marketing.docx",
+"sales": "Lecture/Sales.docx"
+}
+```
 
 # documentation
 
@@ -146,7 +160,18 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 # deploiement
 
-### Docker
+### Heroku ( platforme de déploiement de SFDC)
+
+installer en local heroku https://devcenter.heroku.com/articles/getting-started-with-python#set-up
+
+`heroku --version` pour savoir si bien installé
+
+problème car le cmd ( invité de commande) reconnait bien mais pas le terminal intelliji ( microsoft powershell)
+variables d'environment mal configurées
+
+ 
+
+### Docker ( on ne déploie plus une VM mais un container)
 
 lancer docker desktop et
 
@@ -167,19 +192,12 @@ lancer docker desktop et
 et après on accède via fast api comme d'habitude, il y aura une redirection
 
 
-# exemple pour la config du file_mapper.json
-```json
-{
-"marketing": "Lecture/Marketing.docx",
-"sales": "Lecture/Sales.docx"
-}
-```
 
 # TO DO:
 
 ## MUST HAVE
 
-- Deploy to heroku (section 4)
+- Deploy app to heroku (section 13)
 
 - Automatic tests with pytests ( section 16) 
 
