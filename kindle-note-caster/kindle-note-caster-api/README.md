@@ -79,7 +79,10 @@ lancer la commande depuis le dossier \kindle-note-caster\kindle-note-caster-api\
 
 ou mieux aller sur postman
 
-# Alembic
+# Alembic ( db migration tool)
+
+utile quand tu migres d'une db à une autre (de local à ubuntu VM puis à heroku)
+en gardant les données
 
 se mettre au niveau kindle-note-caster\kindle-note-caster-api
 
@@ -94,6 +97,15 @@ https://alembic.sqlalchemy.org/en/latest/
 
 to do: corriger les erruers quand on lance:
 `alembic current`
+
+puis pour voir ou est la tete:`alembic heads`
+
+pour changer de version à celle au desus / en dessous:
+
+`alembic upgrade head`
+
+`alembic downgrade down_revision_id` ou `alembic downgrade -1` et on peut changer le 1 par n'importe quel nb
+
 
 # gestion de l'auth avec jwt/ Oauth2
 
@@ -167,11 +179,11 @@ et après on accède via fast api comme d'habitude, il y aura une redirection
 
 ## MUST HAVE
 
-- Deploy to docker (section 15)
+- Deploy to heroku (section 4)
 
 - Automatic tests with pytests ( section 16) 
 
-- faire un clean la doc fastapi
+- essayer de le mettre en event driven architecture avec redis et un front
 
 ## NICE TO HAVE
 
