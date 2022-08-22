@@ -1,11 +1,8 @@
 ### import
 import pandas as pd
-import numpy as np
 import docx
 import json
 import re
-import csv
-import logging
 
 
 o_texte = ""
