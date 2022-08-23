@@ -175,6 +175,16 @@ variables d'environment mal configurées -> juste besoin de redémarrer l'IDE
  
 `git push heroku main` on va pousser sur l'instance remote "heroku" notre code
 
+`heroku open`
+
+`heroku logs --tail`
+
+pour chaque changement, il faut push à heroku, donc `git push heroku main`
+
+`heroku addons:create heroku-postgresql:hobby-dev`
+
+
+
 #### TO DO avec heroku 
 
 pour déployer sur heroku, méthode de détection: requirements à la racine du projet github
@@ -262,7 +272,7 @@ jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
 
 -revoir le nommage des colonnes pour respecter celles d'amazon
 
-# la ou j'en suis:
+# Docker: la ou je me suis arreté
 
 docker compose: soucis pour connecter la base de donnée
 le code a été mis dans un try catch mais ce n'est pas le bon code qui est compilé par 
