@@ -50,3 +50,5 @@ to do: le mettre en diagramme UML
 
 - post excel file
 - auth et user
+
+![img.png](FastAPI-screenshot.JPG)

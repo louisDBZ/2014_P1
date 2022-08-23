@@ -14,6 +14,13 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
     # pydantic est capable de savoir si l'email créé est un vrai ou non
     # hash the password - user.password
+    """
+    Exception A gérer:
+
+    sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) ERREUR:  la valeur d'une clé dupliquée rompt la c
+    ontrainte unique « users_email_key »
+    DETAIL:  La clé « (email)=(noemipe@gmail.fr) » existe déjà.
+    """
 
     hashed_password = utils.hash(user.password)
     user.password = hashed_password

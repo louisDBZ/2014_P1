@@ -37,28 +37,44 @@ def get_db():
 
 try:
     with engine.connect() as con:
-        quser = con.execute("""SELECT  max(user_id) FROM users """)
-        qposts = con.execute("""select max(post_id) from posts""")
-        print("quser and qpost succeded")
+        # test pour savoir si les tables existent: je n'ai pas réussi à faire marcher le IF exixts en sql
+        list_table2 = con.execute("""select tablename from pg_tables; """)
+        list_table = list_table2.all()
+        if "('users',)" in list_table and "('posts,)" in list_table:
+            # id_user et id_posts sont des scalaires qui représentent l'indice id maximum de la table
+            # quser et qpost sont des objets de alchemy et après il y a du spaghetti pour trouver le bon num
+            # a refacto, utiliser .value
+
+            quser = con.execute("""SELECT  max(user_id) FROM users """)
+            qposts = con.execute("""select max(post_id) from posts""")
+
+            print (quser.all()[0],quser.post()[0])
+
+            for row in quser: # refaire la conversion dég
+                #<class 'sqlalchemy.engine.row.LegacyRow'>, conversion dégueue mais rapide car pas de get?
+                if literal_eval(str(row))[0] is not None:
+                    id_user= literal_eval(str(row))[0]
+                else:
+                    id_user=0
+
+            for row in qposts:# refaire la conversion dég
+                if literal_eval(str(row))[0] is not None:
+                    id_post= literal_eval(str(row))[0]
+                else:
+                    id_post=0
+
+            print("initialization succeded")
+        else:
+            id_user,id_posts=0,0
+            print("table users or posts don't exist")
 except Exception as error:
-    # si je nai pas compris la raison, je setup les 2 variables à 1
-    quser,qposts=0,0
+    # à gérer: au redémarrage de l'app, les indices sont remis à 0?
+    id_user,id_posts=0,0
     print("Connecting to database failed")
     print("Error:", error)
     time.sleep(2)
 
-for row in quser:
-    #<class 'sqlalchemy.engine.row.LegacyRow'>, conversion dégueue mais rapide car pas de get?
-    if literal_eval(str(row))[0] is not None:
-        id_user= literal_eval(str(row))[0]
-    else:
-        id_user=1
 
-for row in qposts:
-    if literal_eval(str(row))[0] is not None:
-        id_post= literal_eval(str(row))[0]
-    else:
-        id_post=1
 
 
 def mydefault_post():

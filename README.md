@@ -278,3 +278,19 @@ docker compose: soucis pour connecter la base de donnée
 le code a été mis dans un try catch mais ce n'est pas le bon code qui est compilé par 
 
 ![img.png](documentation-resources/img.png)
+
+
+# dump / to do
+
+1er challenge: commande procfile à modifier car crash si ne s'execute pas dans bon dossier
+
+SELECT  max(user_id) FROM users
+Error: (psycopg2.errors.UndefinedTable) relation "users" does not exist
+st
+=> on a des problèmes dans la construction de la db.
+drop le posts table et userset si sql alchemy marche bien, alors reconstruit les tables
+et on retrouve les erreurs de Heroku
+
+-revoir les id de la construction de la bdd
+
+
