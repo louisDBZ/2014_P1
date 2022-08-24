@@ -28,65 +28,28 @@ def get_db():
     finally:
         db.close()
 
-#méthode barbare pour la gestion des indexes
-# ne s'incremente pas automatiquement et besoin de valeur par défault, ne pas passer par new_user.user_id
-#https://docs.sqlalchemy.org/en/14/core/defaults.html
-# a régler car à chaque fois repart de 1
-# a noter combien de fois tournent ces requetes? 1 fois au démarrage
-#faire un try catch sinon on a un problème d'un container qui s'arrete totalement
+def compute_max_post_next():
+    try:
+        with engine.connect() as con:
+            result = con.execute("""select coalesce(max(post_id),0)+1 as o_id from posts""")
+            for row in result:
+                return int(row['o_id'])
 
-try:
-    with engine.connect() as con:
-        # test pour savoir si les tables existent: je n'ai pas réussi à faire marcher le IF exixts en sql
-        list_table2 = con.execute("""select tablename from pg_tables; """)
-        list_table = list_table2.all()
-        if "('users',)" in list_table and "('posts,)" in list_table:
-            # id_user et id_posts sont des scalaires qui représentent l'indice id maximum de la table
-            # quser et qpost sont des objets de alchemy et après il y a du spaghetti pour trouver le bon num
-            # a refacto, utiliser .value
-
-            quser = con.execute("""SELECT  max(user_id) FROM users """)
-            qposts = con.execute("""select max(post_id) from posts""")
-
-            print (quser.all()[0],quser.post()[0])
-
-            for row in quser: # refaire la conversion dég
-                #<class 'sqlalchemy.engine.row.LegacyRow'>, conversion dégueue mais rapide car pas de get?
-                if literal_eval(str(row))[0] is not None:
-                    id_user= literal_eval(str(row))[0]
-                else:
-                    id_user=0
-
-            for row in qposts:# refaire la conversion dég
-                if literal_eval(str(row))[0] is not None:
-                    id_post= literal_eval(str(row))[0]
-                else:
-                    id_post=0
-
-            print("initialization succeded")
-        else:
-            id_user,id_posts=0,0
-            print("table users or posts don't exist")
-except Exception as error:
-    # à gérer: au redémarrage de l'app, les indices sont remis à 0?
-    id_user,id_posts=0,0
-    print("Connecting to database failed")
-    print("Error:", error)
-    time.sleep(2)
+    except Exception as error:
+        print("Connecting to database failed")
+        print("Error:", error)
 
 
+def compute_max_user_next():
+    try:
+        with engine.connect() as con:
+            result = con.execute("""select coalesce(max(user_id),0)+1 as o_id from users""")
+            for row in result:
+                return int(row['o_id'])
 
-
-def mydefault_post():
-    global id_post
-    id_post += 1
-    return id_post
-
-def mydefault_user():
-    global id_user
-    id_user += 1
-    return id_user
-
+    except Exception as error:
+        print("Connecting to database failed")
+        print("Error:", error)
 
 
 

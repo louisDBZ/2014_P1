@@ -7,7 +7,7 @@ Create Date: 2021-08-29 22:50:42.028498
 """
 from alembic import op
 import sqlalchemy as sa
-from app.routers.database import mydefault_post,mydefault_user
+from app.routers.database import compute_max_post_next,compute_max_user_next
 
 # revision identifiers, used by Alembic.
 revision = 'cfcc4fd02d18'
@@ -28,7 +28,7 @@ def upgrade():
 
 
     op.create_table('users',
-                    sa.Column('user_id', sa.Integer(), nullable=False,default=mydefault_user),
+                    sa.Column('user_id', sa.Integer(), nullable=False, default=compute_max_user_next),
                     sa.Column('email', sa.String(), nullable=False),
                     sa.Column('password', sa.String(), nullable=False),
                     sa.Column('user_created_at', sa.TIMESTAMP(timezone=True),

@@ -8,7 +8,7 @@ from psycopg2.extras import RealDictCursor
 
 import datetime
 
-from .database import mydefault_post,mydefault_user
+from .database import compute_max_post_next
 from . import oauth2
 """
 grosse question de design qui se pose ici:
@@ -68,7 +68,7 @@ async def upload_file(file: UploadFile = File(...), current_user: int = Depends(
 
     # upload a trace to the db
 
-    create_post(current_user.user_id,str(extract_Title(file.filename)),mydefault_post())
+    create_post(current_user.user_id, str(extract_Title(file.filename)), compute_max_post_next())
 
     return StreamingResponse(iterfile(), media_type="application/msword")
 

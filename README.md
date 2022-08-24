@@ -272,6 +272,8 @@ jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
 
 -revoir le nommage des colonnes pour respecter celles d'amazon
 
+- rajouter de l'anticrash si le mail est déjà utilisé
+
 # Docker: la ou je me suis arreté
 
 docker compose: soucis pour connecter la base de donnée
@@ -284,13 +286,19 @@ le code a été mis dans un try catch mais ce n'est pas le bon code qui est comp
 
 1er challenge: commande procfile à modifier car crash si ne s'execute pas dans bon dossier
 
-SELECT  max(user_id) FROM users
+2 challenge: 
 Error: (psycopg2.errors.UndefinedTable) relation "users" does not exist
 st
 => on a des problèmes dans la construction de la db.
-drop le posts table et userset si sql alchemy marche bien, alors reconstruit les tables
+drop le posts table et users et si sql alchemy marche bien, alors reconstruit les tables
 et on retrouve les erreurs de Heroku
 
 -revoir les id de la construction de la bdd
+=> j'ai créé des fonctions avec pleins de requetes simple puis de s calculs bizarre:
+penser à blinder avec une seule requete sql et sql alchemy permet de l'executer via le paramètre default
 
+le pb initial était la gestion de l'id lorsque la bdd était vide
+
+
+# racontage de vie:
 
