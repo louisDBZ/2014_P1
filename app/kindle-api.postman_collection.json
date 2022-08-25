@@ -105,7 +105,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "127.0.0.1:8000/users/3",
+					"raw": "127.0.0.1:8000/users/16",
 					"host": [
 						"127",
 						"0",
@@ -115,7 +115,7 @@
 					"port": "8000",
 					"path": [
 						"users",
-						"3"
+						"16"
 					]
 				}
 			},
@@ -131,25 +131,21 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "sisterp5.debouzy@gmail.fr",
+							"value": "noemipvizeopghe@gmail.fr",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "quetal126",
+							"value": "t8cecqs5",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "127.0.0.1:8000/login",
+					"raw": "{{chemin}}/login",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{chemin}}"
 					],
-					"port": "8000",
 					"path": [
 						"login"
 					],
@@ -163,6 +159,33 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "chemin",
+			"value": "127.0.0.1:8000",
+			"type": "string"
 		}
 	]
 }

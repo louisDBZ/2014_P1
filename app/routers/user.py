@@ -3,11 +3,19 @@ from sqlalchemy.orm import Session
 from .models import  User,Column
 from . import models, schemas, utils
 from .database import get_db
+import psycopg2
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from psycopg2.errors import UniqueViolation
 
 router = APIRouter(
     prefix="/users",
     tags=['Users']
 )
+
+class BadRequest(Exception):
+    pass
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.UserIn)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
@@ -25,11 +33,18 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
     new_user = models.User(**user.dict())
-
+    # mettre un try catch si le user existe déjà
     db.add(new_user)
-    # pour que les changements ai bel et bien lieu: besoin de commit et de refresh ( sinon fait à la main)
-    db.commit()
-    db.refresh(new_user)
+
+    try:
+        # pour que les changements ai bel et bien lieu: besoin de commit et de refresh ( sinon fait à la main)
+        db.commit()
+        db.refresh(new_user)
+
+    except IntegrityError as e:
+        # a corriger: crash quand une adresse email déjà existante est  donnée
+        assert isinstance(e.orig, UniqueViolation)
+        raise BadRequest from e
 
     return new_user
 
@@ -42,6 +57,8 @@ def get_user(id: int, db: Session = Depends(get_db)):
 
     retour attendu:
     {
+
+
     "user_id": 3,
     "email": "sisterp3.debouzy@gmail.fr",
 

@@ -228,8 +228,6 @@ et après on accède via fast api comme d'habitude, il y aura une redirection
 
 ## MUST HAVE
 
-- Deploy app to heroku (section 13)
-
 - Automatic tests with pytests ( section 16) 
 
 - essayer de le mettre en event driven architecture avec redis et un front
@@ -299,6 +297,4 @@ penser à blinder avec une seule requete sql et sql alchemy permet de l'executer
 
 le pb initial était la gestion de l'id lorsque la bdd était vide
 
-
-# racontage de vie:
 

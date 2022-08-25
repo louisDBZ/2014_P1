@@ -96,10 +96,10 @@ def create_post(user_id :str , title:str, post_id:int):
 
         conn.commit()
         count = cursor.rowcount
-        print(count, "Record inserted successfully into mobile table")
+        print(count, "Record inserted successfully into table")
 
     except (Exception, psycopg2.Error) as error:
-        print("Failed to insert record into mobile table", error)
+        print("Failed to insert record into table", error)
     finally:
         # closing database connection.
         if conn:
