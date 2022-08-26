@@ -2,8 +2,7 @@
 
 lien du tuto: https://www.youtube.com/watch?v=0sOvCWFmrtA&t=499s
 
-#Database 
-
+#Database
 
 - télécharger postgre et pgadmin GUI
 
@@ -223,6 +222,8 @@ lancer docker desktop et
 et après on accède via fast api comme d'habitude, il y aura une redirection
 
 # Pytest
+
+Testing is hard
 
 https://docs.pytest.org/en/7.1.x/getting-started.html#create-your-first-test
 
