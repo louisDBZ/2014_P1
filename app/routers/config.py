@@ -17,8 +17,8 @@ class Settings(BaseSettings):
     database_password: str
     database_name: str="postgres"
     database_username: str ="postgres"
-    secret_key: str # qu'est ce que c'est ? à comprendre pour la connexion
-    algorithm: str
+    secret_key: str  # the hash key, used for the hashing
+    algorithm: str='HS256'
     access_token_expire_minutes: int=60
 
     class Config:

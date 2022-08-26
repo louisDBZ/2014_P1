@@ -222,6 +222,12 @@ lancer docker desktop et
 
 et après on accède via fast api comme d'habitude, il y aura une redirection
 
+# Pytest
+
+https://docs.pytest.org/en/7.1.x/getting-started.html#create-your-first-test
+
+dans 2014_P1\app, `pytest  --disable-warnings -v -x`
+
 
 
 # TO DO:
