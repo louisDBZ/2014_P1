@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile,File, HTTPException, Depends
 from fastapi.responses import FileResponse,StreamingResponse
 from .note_caster import process_csv_to_docx,extract_Title
-
+#from ..main import logger
 from .config import settings
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -88,21 +88,26 @@ def create_post(user_id :str , title:str, post_id:int):
 
         cursor = conn.cursor()
         print("Database connection was succesfull!")
+        #logger.info("Database connection was succesfull!")
         #INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ('indien',50,4,'2022-08-04 17:33:03.097168+02')
 
         postgres_insert_query = " INSERT INTO posts (title, post_id, user_id,post_created_at) VALUES ( '"+title+"',"+str(post_id)+","+str(user_id)+",'"+str(datetime.datetime.now())+"')"
+        #logger.info("postgres_insert_query",postgres_insert_query)
         print("postgres_insert_query",postgres_insert_query)
         cursor.execute(postgres_insert_query)
 
         conn.commit()
         count = cursor.rowcount
+        #logger.info(count, "Record inserted successfully into table")
         print(count, "Record inserted successfully into table")
 
     except (Exception, psycopg2.Error) as error:
         print("Failed to insert record into table", error)
+        #logger.error("Failed to insert record into table", error)
     finally:
         # closing database connection.
         if conn:
             cursor.close()
             conn.close()
+            #logger.info("PostgreSQL connection is closed")
             print("PostgreSQL connection is closed")

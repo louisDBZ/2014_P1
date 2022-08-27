@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+#from ..main import logger
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -36,6 +37,8 @@ def compute_max_post_next():
                 return int(row['o_id'])
 
     except Exception as error:
+        #logger.error("Connecting to database failed")
+        #logger.error("Error:", error)
         print("Connecting to database failed")
         print("Error:", error)
 
@@ -48,6 +51,8 @@ def compute_max_user_next():
                 return int(row['o_id'])
 
     except Exception as error:
+        #logger.error("Connecting to database failed")
+        #logger.error("Error:", error)
         print("Connecting to database failed")
         print("Error:", error)
 

@@ -6,3 +6,5 @@
 /The_Customer_Success_Professionals_Handbook.docx
 __pycache__
 file_mapper.json
+.pytest_cache
+mylog.log

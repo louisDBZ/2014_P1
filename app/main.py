@@ -1,7 +1,13 @@
+import pytest
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers import post, user, auth
+# comprendre pourquoi heroku il faut un point et pour pytest par exemple, il ne faut pas de point
+# idem le setting le .env
+
 
 from routers.database import engine
 from routers import models
@@ -22,18 +28,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-"""
-import logging
+
 #create a logger
-logger = logging.getLogger('mylogger')
+logger = logging.getLogger()
 #set logger level
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('mylog.log')
+
+handler = logging.FileHandler('logfile.log')
 # create a logging format
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-logging.info("initialize")"""
+logger.info("initialize") # et pas logging!
 
 # pourquoi utiliser un router?: to split pour une meilleure organisation?
 app.include_router(post.router)
@@ -43,6 +49,6 @@ app.include_router(auth.router)
 # se poser la question du choix de la faire asynchrone ou non
 @app.get("/")
 def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello Heroku"}
 
 

@@ -28,7 +28,7 @@ pour mettre les codes de la db ( meme si écrit en clair dans mon code)
 
 edit configurations> Use specified interpreter
 
-`venv\Scripts\activate`
+`venv\Scripts\activate` commandepour avoir l'environment (venv) pour la ligne de commande
 
 pour créer le fichier gérant les variables d'environments:
 
@@ -77,6 +77,10 @@ lancer la commande depuis le dossier \kindle-note-caster\kindle-note-caster-api\
 `uvicorn main:app --reload`
 
 ou mieux aller sur postman
+
+en production, enlever the --reload option (consumes much more resources, is more unstable)
+
+https://www.uvicorn.org/deployment/
 
 # AuthN management
 
@@ -235,13 +239,15 @@ dans 2014_P1\app, `pytest  --disable-warnings -v -x`
 
 ## MUST HAVE
 
+- implémenter loggings
+
 - Automatic tests with pytests ( section 16) 
+
+- revoir installation de vmlinux -> aide pour le projet de landing page
 
 - essayer de le mettre en event driven architecture avec redis et un front
 
 ## NICE TO HAVE
-
-- gestion des print et des logging
 
 https://pythonexamples.org/python-logging-info/
 
@@ -305,3 +311,30 @@ penser à blinder avec une seule requete sql et sql alchemy permet de l'executer
 le pb initial était la gestion de l'id lorsque la bdd était vide
 
 
+# bloqué avec pytest
+
+pydantic.error_wrappers.ValidationError: 2 validation errors for Settings
+
+il ne trouve pas les données du .env
+ce que j'ai essayé de faire:
+
+déplacer hors de tests le .env et le fichier test_users.py => échec
+
+pb avec les chemins (ex: router ou .router)?
+
+a noter, c'est la meme erreur quand je fais  `uvicorn app.main:app --reload` de la racine
+
+dans app, lancer la commande `pytest -v -s ..\tests\test_users.py`
+
+warning provoqué par des pb avev anaconda? `conda update anaconda`
+
+### to do pour pytest
+
+écrire le test_notecaster.py
+
+# logging
+
+ne se retrouve pas dans les idea.log ( log de intelliji), mais dans un fichier .log 
+
+erreur avec les import pour post, database et note_caster
+https://stackoverflow.com/questions/30669474/beyond-top-level-package-error-in-relative-import

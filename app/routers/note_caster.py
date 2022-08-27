@@ -3,7 +3,7 @@ import pandas as pd
 import docx
 import json
 import re
-
+#from ..main import logger
 
 o_texte = ""
 List_mot_a_enlever = ['nan', 'Annotation']  # ce sont en fait les titres des colonnes (cf amélioration possible)
@@ -45,7 +45,9 @@ def extract_keyword(text:str):
     match = re.search(pattern, text)
     if match:
         return (match[0].lower())
+    #logger.error("error: keyword  not found")
     print("error: keyword  not found")
+    # on se pose la question de à qui doit on renvoyer l'infor? au fichier log ou bien au conommateur de l'api???
 
 
 def extract_note(text:str):
@@ -86,8 +88,10 @@ def process_csv_to_docx(chemin_du_csv:str, chemin_du_word:str):
         df = pd.read_csv(chemin_du_csv,sep=',')#, header=None,error_bad_lines='skip')
         # on_bad_lines= 'skip' pour la nouvelle version de python
     except pd.errors.ParserError: # pas sur de ce OSError
+        #logger.error('cannot open')
         print('cannot open')
         # à faire passer en logging
+        #logger.error(
         print(
             """
 from Amazon, the expected separator/delimitor: une virgule
@@ -131,11 +135,10 @@ expected qualifiers ( end of line):  retour à la ligne ( pas de ;)
     mydoc = docx.Document()
     mydoc.add_paragraph(o_texte)
     mydoc.save(chemin_du_word)
-    # logging à la place de print
     # "operation completed" => mettre qch de plus explicite
     # la commande est alors à modifier
     # à faire
-    #logging.info("process_csv_to_docx finished")
+    #logger.info("process_csv_to_docx finished")
     print("process_csv_to_docx finished")
 
 
