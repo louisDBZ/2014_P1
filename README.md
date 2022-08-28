@@ -2,6 +2,10 @@
 
 lien du tuto: https://www.youtube.com/watch?v=0sOvCWFmrtA&t=499s
 
+https://github.com/Sanjeev-Thiyagarajan/fastapi-course
+
+**To access to the code of the core, use the notebook located in kindle-note-caster-notebook**
+
 #Database
 
 - télécharger postgre et pgadmin GUI
@@ -227,12 +231,13 @@ et après on accède via fast api comme d'habitude, il y aura une redirection
 
 # Pytest
 
-Testing is hard
-
 https://docs.pytest.org/en/7.1.x/getting-started.html#create-your-first-test
 
 dans 2014_P1\app, `pytest  --disable-warnings -v -x`
 
+# bilan
+
+✔️alembic folder ready to be github-public
 
 
 # TO DO:
@@ -246,6 +251,8 @@ dans 2014_P1\app, `pytest  --disable-warnings -v -x`
 - revoir installation de vmlinux -> aide pour le projet de landing page
 
 - essayer de le mettre en event driven architecture avec redis et un front
+
+- passer en anglais, meme si mots en français
 
 ## NICE TO HAVE
 
@@ -285,7 +292,7 @@ jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
 
 - rajouter de l'anticrash si le mail est déjà utilisé
 
-# Docker: la ou je me suis arreté
+# 🛑 Docker: la ou je me suis arreté
 
 docker compose: soucis pour connecter la base de donnée
 le code a été mis dans un try catch mais ce n'est pas le bon code qui est compilé par 
@@ -311,7 +318,7 @@ penser à blinder avec une seule requete sql et sql alchemy permet de l'executer
 le pb initial était la gestion de l'id lorsque la bdd était vide
 
 
-# bloqué avec pytest
+#  🛑 bloqué avec pytest
 
 pydantic.error_wrappers.ValidationError: 2 validation errors for Settings
 
@@ -332,9 +339,10 @@ warning provoqué par des pb avev anaconda? `conda update anaconda`
 
 écrire le test_notecaster.py
 
-# logging
+# 🛑 logging
 
 ne se retrouve pas dans les idea.log ( log de intelliji), mais dans un fichier .log 
 
 erreur avec les import pour post, database et note_caster
 https://stackoverflow.com/questions/30669474/beyond-top-level-package-error-in-relative-import
+

@@ -7,14 +7,13 @@ Create Date: 2021-08-29 22:50:42.028498
 """
 from alembic import op
 import sqlalchemy as sa
-from app.routers.database import compute_max_post_next,compute_max_user_next
+from app.routers.database import compute_max_user_next
 
 # revision identifiers, used by Alembic.
 revision = 'cfcc4fd02d18'
-down_revision = None # c'est la base le premier, c'est pour cela pas de down revision
+down_revision = None
 branch_labels = None
 depends_on = None
-
 
 def upgrade():
     op.create_table(
@@ -22,10 +21,6 @@ def upgrade():
         sa.Column('post_id', sa.Integer(), nullable=False, primary_key=True),
         sa.Column('title', sa.String(), nullable=False)
     )
-
-    # le principe de la démonstration ici est de montrer que l'on peut remplir en plusieurs fois la db:
-    #on remplit en pluisieurs fois la table users
-
 
     op.create_table('users',
                     sa.Column('user_id', sa.Integer(), nullable=False, default=compute_max_user_next),
@@ -37,7 +32,6 @@ def upgrade():
                     sa.UniqueConstraint('email')
                     )
     pass
-
 
 def downgrade():
     op.drop_table('posts')

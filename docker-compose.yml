@@ -1,6 +1,3 @@
-#dans mon docker compose, je vais avoir toutes les instructions qui vont permettre
-#de remplacer la commande 'docker run' + un truc interminable
-
 version: "3"
 services:
   api:

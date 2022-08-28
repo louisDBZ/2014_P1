@@ -8,9 +8,23 @@ Je cherche à l'automatiser
 
 ![img.png](kindle_note.jpg)
 
-2- La gestion des photos sur Kindle est compliquée : à tel point que je prend en photo mon kindle 
+The convention is this one:
 
-contacter Amazon?
+put your notes and highlighted texts in the return file
+
+if your note is tagged with @@something,
+the note and the hightlited texts will be added to another file, then you will have this other file 
+
+thepath of the file is parametered  thanks to the file_mapper.json file, that you should also provide
+
+
+Meaning that I will store for every person a folder with some data? plutot que de le mettre dans un autre fichier,
+le mettre dans le meme mais à la suite, en dessous..
+
+
+# possible improvments:
+
+2- La gestion des photos sur Kindle est compliquée : à tel point que je prend en photo mon kindle 
 
 # Architecture logicielle
 
@@ -23,7 +37,7 @@ pourquoi psycopg et sql alchemy? car besoin de connaitre les id  de la BDD en re
 
 # Architecture des données
 
-###"posts"
+### table "posts"
 
 - post_id Integer, primary_key
 
@@ -31,9 +45,9 @@ pourquoi psycopg et sql alchemy? car besoin de connaitre les id  de la BDD en re
 
 - post_created_at TIMESTAMP
 
-- user_id Integer ForeignKey(users
+- user_id Integer ForeignKey
 
-###"users"
+### table "users"
 
 - user_id Integer primary_key
 

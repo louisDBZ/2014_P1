@@ -1,4 +1,3 @@
-### import
 import pandas as pd
 import docx
 import json
@@ -7,6 +6,7 @@ import re
 
 o_texte = ""
 List_mot_a_enlever = ['nan', 'Annotation']  # ce sont en fait les titres des colonnes (cf amélioration possible)
+# to translated in english
 
 # le file mapper est à aller chercher à l'extérieur du projet
 chemin_du_file_mapper = '../file_mapper.json'
@@ -16,21 +16,16 @@ basefilepath = ""
 
 ### fonctions:
 
-def ajouter_surlignement(surlignement:str):
+def add_highlighted_text(highlighted_text:str):
     global o_texte
-    if (str(surlignement) not in List_mot_a_enlever):
-        o_texte = o_texte + '\n\n' + str(surlignement)
+    if (str(highlighted_text) not in List_mot_a_enlever):
+        o_texte = o_texte + '\n\n' + str(highlighted_text)
 
 
-def ajouter_note(note:str):
+def add_note(note:str):
     global o_texte
     if (str(note) not in List_mot_a_enlever):
         o_texte = o_texte + ' => ' + str(note)
-
-
-def num_emplacement(emplacement:str):
-    """not used"""
-    return int(emplacement[12:])
 
 
 def check_hashtag(note:str):
@@ -55,7 +50,7 @@ def extract_note(text:str):
     return (text.replace('@@' + extract_keyword(text), '=>'))
 
 
-def ajouter_au_fichier(filepath:str, surlignement:str, note:str):
+def add_to_file(filepath:str, surlignement:str, note:str):
     # ajout de la basefilepath pour correspondre au changement de dossier
     filepath = basefilepath + filepath
     # ajout de la note et du surlignement
@@ -113,13 +108,13 @@ expected qualifiers ( end of line):  retour à la ligne ( pas de ;)
     for i in df.index:
 
         if df['Type'][i] == 'Surlignement (Jaune)':
-            ajouter_surlignement(df['texte'][i])
+            add_highlighted_text(df['texte'][i])
 
         elif df['Type'][i] == 'Note':
             # vérifie qu'il n'y a pas de ##
 
             if not check_hashtag(df['texte'][i]):
-                ajouter_note(df['texte'][i])
+                add_note(df['texte'][i])
 
             else:
                 # il y a bien un marquage de rediretion de notes: il faut placer la note dans le bon fichier du dossier Lecture
@@ -128,7 +123,7 @@ expected qualifiers ( end of line):  retour à la ligne ( pas de ;)
                 # ajouter dans le fichier concerné la note + l'emplacement précédent
 
                 if extract_keyword(df['texte'][i]) in file_mapper.keys():
-                    ajouter_au_fichier(file_mapper[extract_keyword(df['texte'][i])], df['texte'][i - 1], df['texte'][i])
+                    add_to_file(file_mapper[extract_keyword(df['texte'][i])], df['texte'][i - 1], df['texte'][i])
 
     # pas de else: les autres cas sont les résidus de texte en haut
 

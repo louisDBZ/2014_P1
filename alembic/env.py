@@ -4,23 +4,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-#super bizarre d'écrire les imports de cette façon (encore la notion de package???)
-# https://stackoverflow.com/questions/11536764/how-to-fix-attempted-relative-import-in-non-package-even-with-init-py
 from app.routers.models import Base
 from app.routers.config import settings
 
-'''
-contexte: alembic: outil pour versionner les db
-A chaque fois qu’il y a un changement dans la database, on va faire une revision et les versions vont arriver dans le dossier versions
-
-A noter:
-pas besoisn de ajouter qch dans le gitignore on a le nom des colonnes, il est donc impossible de reconstruire le contenu de la BDD 
-
-on peut tester en faisant un drop cascade des tables
-
-ce fichier a été autogénéré
-
-'''
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
