@@ -6,7 +6,7 @@ https://github.com/Sanjeev-Thiyagarajan/fastapi-course
 
 **To access to the code of the core, use the notebook located in kindle-note-caster-notebook**
 
-#Database
+# Database
 
 - télécharger postgre et pgadmin GUI
 
@@ -135,8 +135,6 @@ pour changer de version à celle au desus / en dessous:
 
 `alembic downgrade down_revision_id` ou `alembic downgrade -1` et on peut changer le 1 par n'importe quel nb
 
-
-
 # errors:
 
 Error loading ASGI app. Could not import module "main".  => aller dans le dossier kindle
@@ -167,31 +165,6 @@ disponible à l'adresse: http://127.0.0.1:8000/docs
 
 # deploiement
 
-### Heroku ( platforme de déploiement de SFDC)
-
-installer en local heroku https://devcenter.heroku.com/articles/getting-started-with-python#set-up
-
-`heroku --version` pour savoir si bien installé
-
-problème car le cmd ( invité de commande) reconnait bien mais pas le terminal intelliji ( microsoft powershell)
-variables d'environment mal configurées -> juste besoin de redémarrer l'IDE
-
- suivre le tuto ( du coup quel interet pour moi de faire cela?)
-
- `heroku create nomapp` , nom de l'app globale
- 
-`git push heroku main` on va pousser sur l'instance remote "heroku" notre code
-
-`heroku open`
-
-`heroku logs --tail`
-
-pour chaque changement, il faut push à heroku, donc `git push heroku main`
-
-`heroku addons:create heroku-postgresql:hobby-dev`
-
-
-
 #### TO DO avec heroku 
 
 pour déployer sur heroku, méthode de détection: requirements à la racine du projet github
@@ -208,26 +181,6 @@ https://pip.pypa.io/en/stable/installation/
 
 => 3ème: vider tout ce qui ne concerne pas ce projet et le mettre dans un nouveau repo github
 
-
-### Docker ( on ne déploie plus une VM mais un container)
-
-lancer docker desktop et
-
-`docker pull python` inutile? 
-
-`docker build -t kindle-note-caster-app .` # inutile car build dans le docker compose??
-
-`docker image ls` pour voir toutes les images
-
-`docker-compose up -d` comment on applique le docker-compose-prod? 
-
-`docker ps -a` pour voir les containers
-
-`docker logs nom_du_container` pour voir les logs d'un container
-
-`docker compose down` ( pareil sans le - ? )
-
-et après on accède via fast api comme d'habitude, il y aura une redirection
 
 # Pytest
 
@@ -346,3 +299,6 @@ ne se retrouve pas dans les idea.log ( log de intelliji), mais dans un fichier .
 erreur avec les import pour post, database et note_caster
 https://stackoverflow.com/questions/30669474/beyond-top-level-package-error-in-relative-import
 
+# 🛑 description du coeur: KO
+
+=> repositionnement du projet tout en frontend
