@@ -7,4 +7,4 @@
 __pycache__
 file_mapper.json
 .pytest_cache
-mylog.log
+*.log
