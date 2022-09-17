@@ -1,41 +1,45 @@
-# Problématique:
+# Kindle note caster
 
-1- Amazon Kindle fourni nos notes sous forme d'un csv ou bien un pdf,ce n'est pas pratique pour relire ses notes -
+Version v1.1
 
-Actuellement, je fais un copier coller de chaque ligne du pdf dans un Microsoft word
+### Business problem:
 
-Je cherche à l'automatiser
+Amazon Kindle give you your notes in a csv format (or a pdf),which ios not handy to read your notes
+
+Currently, I manually copy paste each line of the pdf in a Microsoft word, and then, I can add comments.
+
+I'm trying to automatize it and thus I built this productivity tool
 
 ![img.png](kindle_note.jpg)
 
-The convention is this one:
+This tool is an API. After login to the API, you can send a csv file and you will receive a file that you can save a .doc and work as you want on it.
 
-put your notes and highlighted texts in the return file
+This API was supposed to be the backend of a front end, available in another repository, in the v1
 
-if your note is tagged with @@something,
-the note and the hightlited texts will be added to another file, then you will have this other file 
+You can also organise your notes. ( note that this feature is too complex to parameter for the user and has been remove in the v2 )
 
-thepath of the file is parametered  thanks to the file_mapper.json file, that you should also provide
+The conventions are:
 
+- put your notes and highlighted texts in the return file
 
-Meaning that I will store for every person a folder with some data? plutot que de le mettre dans un autre fichier,
-le mettre dans le meme mais à la suite, en dessous..
+- if your note is tagged with @@something,
+the note and the hightlited texts will be added to another file, stored on the server. 
+The path of this file is parametered  thanks to the file_mapper.json file, that is set up on the server.
 
+v1.2: 2 more roots should be added to the API ( one for sending the json, another for asking for files saved on each person personal space). 
+Another plan was to add the folder at the bottom of the .doc. 
 
-# possible improvments:
+But the v2 came before...
 
-2- La gestion des photos sur Kindle est compliquée : à tel point que je prend en photo mon kindle 
+# possible improvment to this tool:
 
-# Architecture logicielle
+- the management of graphs/illustrations in books is not available using kindle yet
+
+# Software "architecture" 
 
 ![img.png](SW_architecture_diagram.png)
 
-to do: changer chrome par postman
-
-pourquoi psycopg et sql alchemy? car besoin de connaitre les id  de la BDD en read-only
-
-
-# Architecture des données
+# data "architecture" 
 
 ### table "posts"
 
@@ -58,11 +62,9 @@ pourquoi psycopg et sql alchemy? car besoin de connaitre les id  de la BDD en re
 - user_created_at TIMESTAMP
 
 
-# Fonctionalités 
+# Fonctionalities
 
-to do: le mettre en diagramme UML
-
-- post excel file
+- post csv file
 - auth et user
 
 ![img.png](FastAPI-screenshot.JPG)

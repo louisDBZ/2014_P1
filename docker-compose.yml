@@ -1,16 +1,11 @@
 version: "3"
 services:
   api:
-    # c'est exactement la commande docker build ...
     build: .
-    # ouvrir des ports pour l'api
     ports:
       - 8000:8000
-      # routing: le premier est le port sur localhost, le second est sur mon container
     volumes:
       - ./:/usr/src/app
-    # env_file:
-    #     - ./.env
     environment:
       - DATABASE_HOSTNAME=localhost
       - DATABASE_PORT=5432
@@ -20,7 +15,6 @@ services:
       - SECRET_KEY=6610374e18099ce7424c934b3f36db7bcb12389a6ccafc53b2d24533c5a4a9cc
       - ALGORITHM=HS256
       - ACCESS_TOKEN_EXPIRE_MINUTES=60
-    # IP localhost 127.0.0.1 quel interet de mettre --host 0.0.0.0
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
       - postgres
@@ -31,7 +25,6 @@ services:
       - POSTGRES_PASSWORD=louis.debouzy
       - POSTGRES_DB=postgre
     volumes:
-      #nom_du_volume : chemin dans le container pour écrire dedans postgre
       - postgres-db:/var/lib/postgresql/data
 
 volumes:

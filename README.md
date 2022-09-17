@@ -48,14 +48,8 @@ to generate the key fot the security algorithm, to put in the .env: `openssl ran
 
 # bilan
 
-❌ Dockerfile, dockercompose, alembic.ini
-
 ❌ tests
 
 ❌ check the notebook
-
-❌ documentation-resources: img.png + Presentation in french
-
-❌ main
 
 ❌ routers
