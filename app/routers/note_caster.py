@@ -4,88 +4,79 @@ import json
 import re
 #from ..main import logger
 
+#global text that will be added to the file
 o_texte = ""
-List_mot_a_enlever = ['nan', 'Annotation']  # ce sont en fait les titres des colonnes (cf amélioration possible)
-# to translated in english
+# this is the names of the columns in the csv file, they are removed.
+# need to be translated in english
+List_mot_a_enlever = ['nan', 'Annotation']
 
-# le file mapper est à aller chercher à l'extérieur du projet
+# the file mapper should be store at the root of the project
 chemin_du_file_mapper = '../file_mapper.json'
-basefilepath = ""
 
-
-
-### fonctions:
+# functions:
 
 def add_highlighted_text(highlighted_text:str):
     global o_texte
     if (str(highlighted_text) not in List_mot_a_enlever):
         o_texte = o_texte + '\n\n' + str(highlighted_text)
 
+# note management
 
 def add_note(note:str):
     global o_texte
     if (str(note) not in List_mot_a_enlever):
         o_texte = o_texte + ' => ' + str(note)
 
-
-def check_hashtag(note:str):
+def check_at(note:str)->bool:
     if '@@' in note:
         return True
     return False
 
 
-def extract_keyword(text:str):
-    # example: sales de "##sales commentaire1 commentaire2"
+def extract_keyword(text:str)-> str:
+    # Remember: note are tagged with @@, the first word is the keyword, later used for the directory and then there is the comment
+    # example: extract the keyword "sales" from the note "@@sales commentaire1 commentaire2"
     pattern = re.compile(r"""(?<=@@)([A-ù]+)(?= )""")
     match = re.search(pattern, text)
     if match:
         return (match[0].lower())
     #logger.error("error: keyword  not found")
     print("error: keyword  not found")
-    # on se pose la question de à qui doit on renvoyer l'infor? au fichier log ou bien au conommateur de l'api???
 
 
-def extract_note(text:str):
-    # example: "commentaire1 commentaire2" de "##sales commentaire1 commentaire2"
+def extract_comment(text:str)-> str:
+    # example: extract the comment "commentaire1 commentaire2" from the note  "##sales commentaire1 commentaire2"
     return (text.replace('@@' + extract_keyword(text), '=>'))
 
+# creation of the output file
 
 def add_to_file(filepath:str, surlignement:str, note:str):
-    # ajout de la basefilepath pour correspondre au changement de dossier
-    filepath = basefilepath + filepath
-    # ajout de la note et du surlignement
-    # preprocessing du texte
-    output_texte = surlignement + extract_note(note)
-    # ajout à la fin du texte
+    # add the note and the highlighted_text
+    output_texte = surlignement + extract_comment(note)
+    # append the text to the doc
     mydoc = docx.Document(filepath)
     mydoc.paragraphs[-1]
     mydoc.add_paragraph(output_texte)
     mydoc.save(filepath)
 
-
-### script
-
 def process_csv_to_docx(chemin_du_csv:str, chemin_du_word:str):
-    #pour indenter plusieurs lignes: ctrl alt L et tab
 
-    '''
-     toujours des problèmes le choix des séparateurs ( virgules ou point virgules) avec les Csv
-    ce que je ne comprends pas, il faut lancer un csv simple une première fois avant que cela fonctionne: le but du fichier D
-    '''
 
-    # 1- le csv "simple" mais inutile
+    #1- always problems with separators of csv files ( virgules ou point virgules)- but the one of Amazon is standard
+    #by default,  delimiter=',' and lineterminator (  backslash n)
+    #initialization by loading a well configure csv file D.csv
+    # the purpose of the try-catch
+
     df = pd.read_csv("C.csv")
 
-    # 2- le csv interessant
-    # ici j'ai mis un try catch à cause des différents formats des csv
+    # 2- the interesting csv
 
     try:
         df = pd.read_csv(chemin_du_csv,sep=',')#, header=None,error_bad_lines='skip')
-        # on_bad_lines= 'skip' pour la nouvelle version de python
+        # on_bad_lines= 'skip' for the new version of python ( not error_bad_lines)
     except pd.errors.ParserError: # pas sur de ce OSError
         #logger.error('cannot open')
         print('cannot open')
-        # à faire passer en logging
         #logger.error(
         print(
             """
@@ -93,9 +84,7 @@ from Amazon, the expected separator/delimitor: une virgule
 expected qualifiers ( end of line):  retour à la ligne ( pas de ;) 
             """
         )
-        # à faire passer en logging
 
-    # télécharger l'intelliji data viewer
 
     with open(chemin_du_csv, encoding="utf8", errors='ignore') as fichier:
         contenu = fichier.read()
@@ -111,46 +100,19 @@ expected qualifiers ( end of line):  retour à la ligne ( pas de ;)
             add_highlighted_text(df['texte'][i])
 
         elif df['Type'][i] == 'Note':
-            # vérifie qu'il n'y a pas de ##
-
-            if not check_hashtag(df['texte'][i]):
+            if not check_at(df['texte'][i]):
                 add_note(df['texte'][i])
 
             else:
-                # il y a bien un marquage de rediretion de notes: il faut placer la note dans le bon fichier du dossier Lecture
-                # ce mapping (le bon endroit des fichiers) est stocké dans un dictionnaire
-                # celui ci est documenté dans le README
-                # ajouter dans le fichier concerné la note + l'emplacement précédent
-
+                # management of the redirection of the note according to its title and the parameters store in the JSON of the file_mapper file.
                 if extract_keyword(df['texte'][i]) in file_mapper.keys():
                     add_to_file(file_mapper[extract_keyword(df['texte'][i])], df['texte'][i - 1], df['texte'][i])
-
-    # pas de else: les autres cas sont les résidus de texte en haut
 
     mydoc = docx.Document()
     mydoc.add_paragraph(o_texte)
     mydoc.save(chemin_du_word)
-    # "operation completed" => mettre qch de plus explicite
-    # la commande est alors à modifier
-    # à faire
     #logger.info("process_csv_to_docx finished")
     print("process_csv_to_docx finished")
 
-
-
 def extract_Title( chemin_du_csv:str) -> str:
-    '''    # se rappeler de cette façon de typer la fonction
-
-    # 2 façons d'extraire le titre:
-    #- soit je vais le chercher bien écrit dans le csv
-    #- soit je vais aller le chercher dans le titre donné au fichier
-
-
-    #inutile d'utiliser csv reader -> on va le chercher dans le titre
-    # by default,  delimiter=',' et on a le bon lineterminator ( le backslash n)
-    with open(chemin_du_csv, 'r',newline='') as csvfile:
-        csvreader = csv.reader(csvfile)
-        for row in csvreader:
-            print(row)'''
-
     return chemin_du_csv[:-4].replace("'"," ")

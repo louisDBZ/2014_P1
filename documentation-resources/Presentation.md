@@ -4,17 +4,19 @@ Version v1.1
 
 ### Business problem:
 
-Amazon Kindle give you your notes in a csv format (or a pdf),which ios not handy to read your notes
+Amazon Kindle give you your notes in a csv format (or a pdf),which is not handy to read your notes
 
-Currently, I manually copy paste each line of the pdf in a Microsoft word, and then, I can add comments.
+Currently, I manually copy paste each line of the pdf in a Microsoft word, and then, I can add my post-reading comments.
 
 I'm trying to automatize it and thus I built this productivity tool
 
 ![img.png](kindle_note.jpg)
 
-This tool is an API. After login to the API, you can send a csv file and you will receive a file that you can save a .doc and work as you want on it.
+This tool is an API and was supposed to be the backend of an app. The front end, is available in another repository, in the v1
+. 
 
-This API was supposed to be the backend of a front end, available in another repository, in the v1
+After login to the API, you can send a csv file and you will receive a file that you can save a .doc and work as you want on it.
+
 
 You can also organise your notes. ( note that this feature is too complex to parameter for the user and has been remove in the v2 )
 

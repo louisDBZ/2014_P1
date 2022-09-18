@@ -1,15 +1,7 @@
 from pydantic import BaseSettings
 
-'''
-on lui dit d'aller chercher dans .env les variables que l'on codait en dur dans le connect avant
-
-le .env file est un fichier texte, il y a donc un cast à faire pour le type des variables d'environnments 
-ces classes servent à cela
-
-on a mis des valeurs par défault ici
-
-host='localhost', port='5432',database='postgres', user='postgres', password='louis.debouzy'
-'''
+# the env. file is a text file, there is a cast to do for the env variable.
+# Default values has been added if no values has been found in the env. file
 
 class Settings(BaseSettings):
     database_hostname: str ="localhost"
@@ -24,7 +16,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
 
-
+# This setting instance will help to do the validation + making accessible the valuies from another file
 settings = Settings()
-# on crée une instance de setting qui va permettre de faire les validations
-# et surtout permettre d'accéder aux variables depuis un autre fichier
+

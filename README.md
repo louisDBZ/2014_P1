@@ -2,9 +2,11 @@
 
 please click on this [link](documentation-resources/Presentation.md)
 
+**No commercial use intended , check https://github.com/Sanjeev-Thiyagarajan/fastapi-course **
+
 # How to run this project?
 
-**Prototype accessible in the folder kindle-note-caster-notebook**
+**Notebook prototype accessible in the folder kindle-note-caster-notebook**
 
 # create an environment 
 
@@ -45,20 +47,3 @@ to generate the key fot the security algorithm, to put in the .env: `openssl ran
 "sales": "Lecture/Sales.docx"
 }
 ```
-
-# bilan
-
-❌ tests
-
-❌ routers -config.py
-
-❌ routers -database.py
-
-❌ routers -note_caster.py
-
-❌ routers -oauth2.py
-
-❌ ( regarder la video comment designer une API? )
-https://www.youtube.com/watch?v=_YlYuNMTCc8
-
-❌ create a release sur github
