@@ -1,6 +1,6 @@
 # What is the purpose of this project?
 
-please click on this [link](documentation-resources/Presentation.md) ( in french)
+please click on this [link](documentation-resources/Presentation.md)
 
 # How to run this project?
 
@@ -50,6 +50,15 @@ to generate the key fot the security algorithm, to put in the .env: `openssl ran
 
 ❌ tests
 
-❌ check the notebook
+❌ routers -config.py
 
-❌ routers
+❌ routers -database.py
+
+❌ routers -note_caster.py
+
+❌ routers -oauth2.py
+
+❌ ( regarder la video comment designer une API? )
+https://www.youtube.com/watch?v=_YlYuNMTCc8
+
+❌ create a release sur github

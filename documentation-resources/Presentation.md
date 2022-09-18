@@ -27,7 +27,11 @@ the note and the hightlited texts will be added to another file, stored on the s
 The path of this file is parametered  thanks to the file_mapper.json file, that is set up on the server.
 
 v1.2: 2 more roots should be added to the API ( one for sending the json, another for asking for files saved on each person personal space). 
-Another plan was to add the folder at the bottom of the .doc. 
+Another plan was to add the folder at the bottom of the .doc. the sftp exchange is not considered
+
+Thing to improve also: the management of files on the server side: to be sure that for each csv file received, a copy is not dowloaded -> memory management
+
+In postman:  `save response`>`save to a file` and choose a doc file
 
 But the v2 came before...
 
