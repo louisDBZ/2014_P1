@@ -1,6 +1,6 @@
 # What is the purpose of this project?
 
-please click on this [link](documentation-resources/Presentation.md)
+Visit the complete documentation in `documentation-resources`>`Presentation` or click on this [link](documentation-resources/Presentation.md)
 
 # How to run this project?
 
