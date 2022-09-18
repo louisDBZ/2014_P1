@@ -2,8 +2,6 @@
 
 please click on this [link](documentation-resources/Presentation.md)
 
-**No commercial use intended , check https://github.com/Sanjeev-Thiyagarajan/fastapi-course **
-
 # How to run this project?
 
 **Notebook prototype accessible in the folder kindle-note-caster-notebook**
@@ -31,7 +29,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=
 
 # RUN 
 
-from the folder, \kindle-note-caster\kindle-note-caster-api\app, launch: `uvicorn main:app --reload`
+from the folder, `\kindle-note-caster\kindle-note-caster-api\app`, launch: `uvicorn main:app --reload`
 
 # AuthN management
 
@@ -47,3 +45,11 @@ to generate the key fot the security algorithm, to put in the .env: `openssl ran
 "sales": "Lecture/Sales.docx"
 }
 ```
+# credits to this project
+
+**No commercial use intended , check https://github.com/Sanjeev-Thiyagarajan/fastapi-course**
+
+
+# RUN test
+
+from the root of this project, launch `pytest`
